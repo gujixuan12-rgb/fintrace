@@ -6,8 +6,17 @@
 
 1. 本项目的长期工程与领域记忆位于 `docs/agent-memory/PROJECT_MEMORY.md`，
    开始实质工作前必须读取；该文件只适用于本仓库。
-2. Hermes 全局 `MEMORY.md` 只保存跨项目的稳定偏好。本项目的架构细节、
+2. 动手前还要读两份：`docs/STATUS.md`（当前进度与**待拍板事项**，
+   未拍板的事不要当成已定）、`docs/CASE_ANALYSIS.md`（真实案例审计结论）。
+3. Hermes 全局 `MEMORY.md` 只保存跨项目的稳定偏好。本项目的架构细节、
    数据状态、阶段进度不得写入全局记忆。
+
+## 一级：外部材料不可凭记忆引用
+
+竞赛的时间节点、评测要求、选题定义，一律以 `docs/agent-memory/PROJECT_MEMORY.md`
+里记录的官方原文为准；需要改动那些条目时，必须先去官方来源重新核对，
+不得凭印象修改。同理，案例材料的事实（页码、金额、错误内容）以
+`docs/CASE_ANALYSIS.md` 为准，改动前先用 `G:/tools/fintrace-tools/case_tools.py` 重新验证。
 
 ## 一级：不可违反的领域红线
 

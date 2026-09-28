@@ -1,0 +1,17 @@
+{
+  "_note": "本文件是 calculators 层的期望值基线（mock）。测试会用 mock_original_inputs.json 复算并与这里逐项比对；不一致即测试失败。",
+  "period": "2020A",
+  "prev_period": "2019A",
+  "unit": "ratio",
+  "expected": {
+    "gross_margin@2020A": 0.213333,
+    "gross_margin@2019A": 0.3,
+    "operating_cash_to_revenue@2020A": 0.6,
+    "receivable_growth_gap@2020A_vs_2019A": 0.75
+  },
+  "expected_signals": [
+    "RECEIVABLE_GROWTH_FASTER",
+    "CASH_CONVERSION_WEAK",
+    "GROSS_MARGIN_SWING"
+  ]
+}

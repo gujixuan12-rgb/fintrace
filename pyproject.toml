@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fintrace"
+version = "0.1.0"
+description = "面向上市公司财报与研报的可追溯风险预警系统"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+# 接入真实 PDF 时再装
+pdf = ["pymupdf>=1.24"]
+llm = ["openai>=1.0"]
+dev = ["pytest>=7", "jsonschema>=4"]
+
+[project.scripts]
+fintrace = "fintrace.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"

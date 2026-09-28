@@ -1,0 +1,41 @@
+{
+  "$comment": "措辞约束的策略定义。代码实现见 src/fintrace/verification/wording_guard.py —— 这份 JSON 是给人和前端看的同一份口径，两边必须保持一致。",
+  "version": "1.0",
+  "policy_source": "陈翊民 2026-09-26 私聊「建立措辞约束」",
+  "allowed_labels": {
+    "RISK_SIGNAL_DETECTED": "存在风险信号",
+    "FURTHER_VERIFICATION_SUGGESTED": "建议进一步核查",
+    "POSSIBLE_RISK_CATEGORY": "可能涉及某类风险",
+    "INSUFFICIENT_INFORMATION": "当前公开信息不足以确认"
+  },
+  "post_hoc_only_labels": {
+    "CONFIRMED_BY_AUTHORITATIVE_DOCUMENT": {
+      "text": "已由监管或公司正式文件确认",
+      "conditions": [
+        "task_mode == 'post_hoc'",
+        "输入材料中存在监管或公司正式确认文件（如问询函回复中的认定结论、更正公告）"
+      ]
+    }
+  },
+  "banned_patterns": [
+    { "regex": "虚增(收入|利润|资产|营收|业绩)", "why": "对虚增行为的定性断言" },
+    { "regex": "财务造假|财务舞弊|会计造假", "why": "对财务造假的定性断言" },
+    { "regex": "(虚假记载|虚假陈述|严重失实)", "why": "对披露真实性的定性断言" },
+    { "regex": "供应商交易(虚假|不实|虚构)", "why": "对具体交易真实性的定性断言" },
+    { "regex": "(伪造|编造)(合同|凭证|单据|发票)", "why": "对凭证真实性的定性断言" },
+    { "regex": "(侵占|挪用|掏空)(公司)?(资金|资产)", "why": "对资金去向的定性断言" },
+    { "regex": "(操纵|干预)(股价|利润|报表)", "why": "对操纵行为的定性断言" },
+    { "regex": "(关联方)?(利益输送)", "why": "对利益输送的定性断言" },
+    { "regex": "(违法违规|涉嫌犯罪|已被立案)", "why": "对法律定性的断言" }
+  ],
+  "preferred_phrasing": {
+    "虚增收入": "营业收入与相关现金流、关联交易结构存在不匹配，存在风险信号",
+    "财务造假": "多项会计估计与同业偏离，建议进一步核查",
+    "供应商交易虚假": "主要供应商的公开信息、成立时间与交易规模存在不匹配，可能涉及交易真实性风险"
+  },
+  "enforcement": {
+    "where": "reporting/risk_report.build() —— 报告离场前的最后一道门",
+    "behaviour": "命中黑名单直接抛 WordingViolation，不生成半成品报告",
+    "note": "约束实现于代码层，不依赖提示词。模型可自由生成草稿，草稿必须过门才能输出。"
+  }
+}

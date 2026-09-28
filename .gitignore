@@ -1,0 +1,32 @@
+# 真实材料不进版本库（用 dir/* 才能把 .gitkeep 例外放回来）
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# 运行产物
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 密钥 / 凭据 —— 绝不能提交
+.env
+.env.*
+*.key
+*api-key*
+credentials.json

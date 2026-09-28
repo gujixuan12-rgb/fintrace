@@ -1,0 +1,53 @@
+{
+  "company": "示例生态股份有限公司",
+  "subject_code": "示例代码 000000（虚构，非真实上市公司）",
+  "task_mode": "pre_hoc",
+  "prediction_cutoff_date": "2021-04-30",
+  "period": "2020A",
+  "prev_period": "2019A",
+  "note": "本文件中的所有公司、数字均为虚构，仅用于打通流程。禁止把 mock 数据当成真实财务事实引用。",
+  "documents": [
+    {
+      "source_id": "DOC-AR-2020",
+      "file_name": "示例生态：2020年年度报告.pdf",
+      "source_type": "original_annual_report",
+      "publication_date": "2021-04-20",
+      "pages": [
+        { "page": 1, "text": "示例生态股份有限公司 2020 年年度报告。本报告经董事会审议通过，于 2021 年 4 月 20 日披露。" },
+        { "page": 42, "text": "第三节 管理层讨论与分析。报告期内公司实现营业收入 150,000 万元，上年同期 100,000 万元，同比增长 50.00%。" },
+        { "page": 43, "text": "营业成本 118,000 万元，上年同期 70,000 万元，同比增长 68.57%。" },
+        { "page": 58, "text": "合并资产负债表（续）。应收账款期末余额 45,000 万元，期初余额 20,000 万元。" },
+        { "page": 61, "text": "合并现金流量表。销售商品、提供劳务收到的现金 90,000 万元。" },
+        { "page": 75, "text": "报告期末，公司前五名客户合计销售金额占年度销售总额的比例为 62.00%。" }
+      ]
+    },
+    {
+      "source_id": "DOC-AR-2019",
+      "file_name": "示例生态：2019年年度报告.pdf",
+      "source_type": "original_annual_report",
+      "publication_date": "2020-04-25",
+      "pages": [
+        { "page": 40, "text": "2019 年度公司实现营业收入 100,000 万元，营业成本 70,000 万元。" },
+        { "page": 55, "text": "应收账款期末余额 20,000 万元。" }
+      ]
+    },
+    {
+      "source_id": "DOC-CORR-2021",
+      "file_name": "示例生态：关于前期会计差错更正的公告.pdf",
+      "source_type": "correction_announcement",
+      "publication_date": "2021-06-15",
+      "pages": [
+        { "page": 1, "text": "公司于 2021 年 6 月 15 日披露前期会计差错更正公告，对 2020 年度营业收入及相关科目进行调整。" }
+      ]
+    }
+  ],
+  "indicators": [
+    { "metric": "营业收入", "value": 150000, "unit": "万元", "period": "2020A" },
+    { "metric": "营业收入", "value": 100000, "unit": "万元", "period": "2019A" },
+    { "metric": "营业成本", "value": 118000, "unit": "万元", "period": "2020A" },
+    { "metric": "营业成本", "value": 70000, "unit": "万元", "period": "2019A" },
+    { "metric": "应收账款", "value": 45000, "unit": "万元", "period": "2020A" },
+    { "metric": "应收账款", "value": 20000, "unit": "万元", "period": "2019A" },
+    { "metric": "销售商品、提供劳务收到的现金", "value": 90000, "unit": "万元", "period": "2020A" }
+  ]
+}

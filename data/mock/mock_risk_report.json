@@ -1,0 +1,139 @@
+{
+  "run_log_id": "FT-20260928-dbf4e67bf8",
+  "generated_at": "2026-09-28T08:28:11+08:00",
+  "company": "示例生态股份有限公司",
+  "prediction_cutoff_date": "2021-04-30",
+  "task_mode": "pre_hoc",
+  "scope_note": "范围：仅使用发布日期不晚于预警截止日 2021-04-30 的公开材料；截止日之后发布的信息一律排除在预警计算之外。",
+  "signals": [
+    {
+      "code": "RECEIVABLE_GROWTH_FASTER",
+      "title": "应收账款增速显著快于营业收入增速",
+      "severity": "high",
+      "label": "RISK_SIGNAL_DETECTED",
+      "label_cn": "存在风险信号",
+      "basis": "复算增速差 = +75.0%，高于阈值 20%。公式：应收账款增速(2020A) - 营业收入增速(2020A)。",
+      "suggested_checks": [
+        "核对应收账款账龄结构与前五大欠款方，关注是否集中在新增客户",
+        "对比信用政策是否发生变化（账期、折扣、结算方式）",
+        "查阅报告期后回款情况以及坏账准备计提比例是否同步调整"
+      ],
+      "metrics": [
+        "应收账款",
+        "营业收入"
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-AR-2020",
+          "file_name": "示例生态：2020年年度报告.pdf",
+          "page": 42,
+          "publication_date": "2021-04-20",
+          "available_before_cutoff": true,
+          "quoted_text": "第三节 管理层讨论与分析。报告期内公司实现营业收入 150,000 万元，上年同期 100,000 万元，同比增长 50.00%。"
+        },
+        {
+          "source_id": "DOC-AR-2020",
+          "file_name": "示例生态：2020年年度报告.pdf",
+          "page": 58,
+          "publication_date": "2021-04-20",
+          "available_before_cutoff": true,
+          "quoted_text": "合并资产负债表（续）。应收账款期末余额 45,000 万元，期初余额 20,000 万元。"
+        }
+      ],
+      "claim_ids": [
+        "RECEIVABLE_GROWTH_FASTER"
+      ]
+    },
+    {
+      "code": "CASH_CONVERSION_WEAK",
+      "title": "收入现金含量偏低",
+      "severity": "medium",
+      "label": "RISK_SIGNAL_DETECTED",
+      "label_cn": "存在风险信号",
+      "basis": "复算收现比 = 0.600，低于阈值 0.7。公式：收现比 = 销售商品、提供劳务收到的现金 / 营业收入。",
+      "suggested_checks": [
+        "核对现金流量表「销售商品、提供劳务收到的现金」与利润表营业收入的列报口径是否一致",
+        "查阅应收账款、应收票据、合同资产的附注，确认是否存在大额未收回款项",
+        "核查是否存在以票据、保理等方式提前确认收入的情形"
+      ],
+      "metrics": [
+        "销售商品、提供劳务收到的现金",
+        "营业收入"
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-AR-2020",
+          "file_name": "示例生态：2020年年度报告.pdf",
+          "page": 42,
+          "publication_date": "2021-04-20",
+          "available_before_cutoff": true,
+          "quoted_text": "第三节 管理层讨论与分析。报告期内公司实现营业收入 150,000 万元，上年同期 100,000 万元，同比增长 50.00%。"
+        },
+        {
+          "source_id": "DOC-AR-2020",
+          "file_name": "示例生态：2020年年度报告.pdf",
+          "page": 61,
+          "publication_date": "2021-04-20",
+          "available_before_cutoff": true,
+          "quoted_text": "合并现金流量表。销售商品、提供劳务收到的现金 90,000 万元。"
+        }
+      ],
+      "claim_ids": [
+        "CASH_CONVERSION_WEAK"
+      ]
+    },
+    {
+      "code": "GROSS_MARGIN_SWING",
+      "title": "毛利率同比出现较大波动",
+      "severity": "medium",
+      "label": "RISK_SIGNAL_DETECTED",
+      "label_cn": "存在风险信号",
+      "basis": "毛利率由 30.00% 变为 21.33%，变动 -8.67%，超过阈值 ±5%。",
+      "suggested_checks": [
+        "核对营业成本构成明细，区分原材料价格、产品结构与制造费用口径变化",
+        "关注收入确认时点是否变化（总额法/净额法切换会导致毛利率跳变）",
+        "与同行业可比公司同期毛利率变动方向对比"
+      ],
+      "metrics": [
+        "营业收入",
+        "营业成本"
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-AR-2020",
+          "file_name": "示例生态：2020年年度报告.pdf",
+          "page": 42,
+          "publication_date": "2021-04-20",
+          "available_before_cutoff": true,
+          "quoted_text": "第三节 管理层讨论与分析。报告期内公司实现营业收入 150,000 万元，上年同期 100,000 万元，同比增长 50.00%。"
+        },
+        {
+          "source_id": "DOC-AR-2020",
+          "file_name": "示例生态：2020年年度报告.pdf",
+          "page": 43,
+          "publication_date": "2021-04-20",
+          "available_before_cutoff": true,
+          "quoted_text": "营业成本 118,000 万元，上年同期 70,000 万元，同比增长 68.57%。"
+        }
+      ],
+      "claim_ids": [
+        "GROSS_MARGIN_SWING"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "source_id": "DOC-CORR-2021",
+      "file_name": "示例生态：关于前期会计差错更正的公告.pdf",
+      "publication_date": "2021-06-15",
+      "reasons": [
+        "证据晚于预警截止日 2021-04-30：示例生态：关于前期会计差错更正的公告.pdf(2021-06-15)"
+      ]
+    }
+  ],
+  "unable_to_judge": [],
+  "warnings": [
+    "材料 示例生态：关于前期会计差错更正的公告.pdf（2021-06-15）晚于预警截止日 2021-04-30，已排除"
+  ],
+  "disclaimer": "本报告仅基于预警截止日之前已公开的信息给出风险信号提示，不构成对任何主体的定性结论、投资建议或法律意见。所有信号均需由专业人员进一步核查后方可使用。"
+}

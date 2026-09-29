@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinTrace Risk Output",
+  "type": "object",
+  "required": ["case_id", "model_role", "features", "risk_signals", "peer_threshold_assessment", "evidence_gaps", "recommended_procedures"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "model_role": {"type": "string"},
+    "features": {"type": "object", "additionalProperties": {"type": "string"}},
+    "risk_signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signal_id", "signal", "hypothesis"],
+        "properties": {
+          "signal_id": {"type": "string"},
+          "signal": {"type": "string"},
+          "hypothesis": {"type": "string"}
+        }
+      }
+    },
+    "peer_threshold_assessment": {
+      "type": "object",
+      "required": ["status", "message"],
+      "properties": {
+        "metric": {"type": "string"},
+        "status": {"enum": ["NOT_PROVIDED", "INSUFFICIENT_PEER_SAMPLE", "AVAILABLE"]},
+        "sample_size": {"type": "integer", "minimum": 0},
+        "median": {"type": ["string", "null"]},
+        "mad": {"type": ["string", "null"]},
+        "robust_z": {"type": ["string", "null"]},
+        "percentile_rank": {"type": ["string", "null"]},
+        "message": {"type": "string"}
+      }
+    },
+    "evidence_gaps": {"type": "array", "items": {"type": "string"}},
+    "recommended_procedures": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "case_id": "meichen_2020_pre_event",
+  "company": "山东美晨生态环境股份有限公司",
+  "stock_code": "300237",
+  "as_of_date": "2021-04-30",
+  "sources": [
+    {
+      "source_id": "annual_report_2020_original",
+      "file_name": "美晨生态：2020年年度报告（已取消）.pdf",
+      "source_type": "original_annual_report",
+      "document_date": "2021-04",
+      "publication_date": null,
+      "publication_date_status": "NEEDS_VERIFICATION",
+      "allowed_for_model_input": true
+    }
+  ],
+  "financials": {
+    "2019": {
+      "revenue": {"value": "2954623175.52", "unit": "元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 8},
+      "attributable_net_profit": {"value": "80748587.23", "unit": "元", "scope": "归母", "source_id": "annual_report_2020_original", "page": 8},
+      "operating_cash_flow": {"value": "62751926.04", "unit": "元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 8}
+    },
+    "2020": {
+      "revenue": {"value": "3065927169.95", "unit": "元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 8},
+      "attributable_net_profit": {"value": "51802175.89", "unit": "元", "scope": "归母", "source_id": "annual_report_2020_original", "page": 8},
+      "operating_cash_flow": {"value": "-227378350.25", "unit": "元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 8},
+      "total_assets": {"value": "11124972579.91", "unit": "元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 8},
+      "accounts_receivable": {"value": "118573.29", "unit": "万元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 114},
+      "contract_assets": {"value": "564662.81", "unit": "万元", "scope": "合并", "source_id": "annual_report_2020_original", "page": 114}
+    }
+  }
+}

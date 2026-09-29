@@ -1,0 +1,15 @@
+{
+  "case_id": "meichen_2020_pre_event",
+  "source": "美晨生态：2020年年度报告（已取消）.pdf",
+  "entries": [
+    {"metric_id": "revenue", "period": "2019", "scope": "合并", "value": "2954623175.52", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "revenue", "period": "2020", "scope": "合并", "value": "3065927169.95", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "attributable_net_profit", "period": "2019", "scope": "归母", "value": "80748587.23", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "attributable_net_profit", "period": "2020", "scope": "归母", "value": "51802175.89", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "operating_cash_flow", "period": "2019", "scope": "合并", "value": "62751926.04", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "operating_cash_flow", "period": "2020", "scope": "合并", "value": "-227378350.25", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "total_assets", "period": "2020", "scope": "合并", "value": "11124972579.91", "unit": "元", "evidence_pages": [8]},
+    {"metric_id": "accounts_receivable", "period": "2020", "scope": "合并", "value": "118573.29", "unit": "万元", "evidence_pages": [114]},
+    {"metric_id": "contract_assets", "period": "2020", "scope": "合并", "value": "564662.81", "unit": "万元", "evidence_pages": [114]}
+  ]
+}

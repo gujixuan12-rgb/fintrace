@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinTrace Full Pipeline Output",
+  "type": "object",
+  "required": ["pipeline_version", "stages", "analysis", "agent_explanation"],
+  "properties": {
+    "pipeline_version": {"type": "string"},
+    "stages": {"type": "array", "items": {"type": "string"}},
+    "fact_check": {"type": ["object", "null"]},
+    "analysis": {"type": "object"},
+    "agent_explanation": {
+      "type": "object",
+      "required": ["headline", "risk_explanations", "fact_check_actions", "recommended_procedures", "limitations", "conclusion_boundary", "generation_mode"]
+    },
+    "evaluation": {"type": "object"}
+  }
+}

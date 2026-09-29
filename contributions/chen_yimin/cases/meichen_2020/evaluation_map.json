@@ -1,0 +1,8 @@
+{
+  "case_id": "meichen_2020_ex_post_evaluation",
+  "label_dimensions": [
+    {"label_id": "L_REVENUE_COST", "label": "收入与成本确认问题", "supporting_signal_ids": ["CASH_001", "DIV_001"]},
+    {"label_id": "L_CONTRACT_ASSET", "label": "合同资产列报与减值问题", "supporting_signal_ids": ["CASH_001", "QUALITY_001"]},
+    {"label_id": "L_IMPAIRMENT", "label": "资产减值问题", "supporting_signal_ids": ["QUALITY_001"]}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinTrace Eligible Peer Benchmark",
+  "type": "object",
+  "required": ["metric", "year", "definition_version", "scope", "unit", "peer_group", "records"],
+  "properties": {
+    "scope": {"type": "string"},
+    "unit": {"const": "ratio"},
+    "peer_group": {"type": "string"},
+    "records": {"type": "array", "items": {"type": "object", "required": ["record_id", "stock_code", "value", "metric", "year", "scope", "unit", "definition_version", "peer_group", "source"], "properties": {"source": {"type": "object", "required": ["source_type", "publication_date", "file_name", "page", "verified"]}}}},
+    "metric": {"type": "string"},
+    "year": {"type": "integer"},
+    "as_of_date": {"type": "string", "format": "date"},
+    "definition_version": {"type": "string"},
+    "direction": {"enum": ["high", "low", "two_sided"]},
+    "min_sample_size": {"type": "integer", "minimum": 2},
+    "excluded_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["record_id", "reason"],
+        "properties": {
+          "record_id": {"type": "string"},
+          "reason": {"enum": ["FUTURE_SOURCE", "POST_EVENT_SOURCE", "SCOPE_MISMATCH", "DEFINITION_MISMATCH", "MISSING_VALUE", "UNVERIFIED_SOURCE"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

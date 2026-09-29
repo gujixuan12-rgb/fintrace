@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FinTrace Original Inputs",
+  "type": "object",
+  "required": ["case_id", "company", "stock_code", "as_of_date", "sources", "financials"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "company": {"type": "string"},
+    "stock_code": {"type": "string"},
+    "as_of_date": {"type": "string", "format": "date"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "source_type", "allowed_for_model_input"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "source_type": {"type": "string"},
+          "publication_date": {"type": ["string", "null"], "format": "date"},
+          "allowed_for_model_input": {"type": "boolean"}
+        }
+      }
+    },
+    "financials": {"type": "object"}
+  }
+}

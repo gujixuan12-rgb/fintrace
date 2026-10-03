@@ -1,0 +1,18 @@
+{
+  "artifact_role": "evaluation_only_do_not_pass_to_detector_or_agent",
+  "claim_id": "QM-CLAIM-001",
+  "expected_verdict": "SUPPORTED",
+  "expected_flag_as_error": false,
+  "basis": "原始年报第51页每10股派息数0.10元（含税）及第223页的同一预案相互印证。主张明确限定为年报披露的预案，没有声称实际派付。",
+  "source_id": "qiming_2023_annual_report_original",
+  "source_publication_date": "2024-04-13",
+  "prediction_cutoff_date": "2024-04-22",
+  "source_sha256": "a9f276a963e3233aad87ef3eec860af96e99c0819f6ceebcde39df72468ea0d1",
+  "evidence": [
+    {"pdf_page": 51, "printed_page": 51, "quote": "每 10股派息数（元）（含税） 0.10"},
+    {"pdf_page": 223, "printed_page": 223, "quote": "每 10股派发现金红利 0.10元（含税）"}
+  ],
+  "quote_format": "合并PDF布局空白；原始抽取片段由read_evidence.py输出",
+  "false_positive_rule": "同一份年报其他金额存在差异，不能直接使本条每10股派息预案主张被判错。",
+  "interpretation_limit": "仅为一个结构化正确主张的测试基准；不代表整个系统准确率，也不是通用研报理解或大模型评测。"
+}

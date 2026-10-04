@@ -1,8 +1,23 @@
-# 当前状态与待办（封存于 2026-09-28）
+# 当前状态与待办（更新于 2026-10-04；上一封存点 2026-09-28）
 
 > 这份文件记录**会过期的东西**：进度、待拍板事项、下一步动作。
 > 长期不变量看 `docs/agent-memory/PROJECT_MEMORY.md`，案例结论看 `docs/CASE_ANALYSIS.md`。
 > 下次继续时先读这三份。
+
+---
+
+## 零、2026-10-04 更新
+
+- [x] **队友分支已并入 main**（技术总集成，按用户要求不走 PR）：
+      `origin/chen-yimin/deterministic-peer-guard`（独立计算包 + 启明分红演示 + 初赛计划书草稿）、
+      `origin/qi-feiyang/source-evidence`（启明来源核验与 PDF 读取、美晨 2018-2020 原始输入、验收记录）。
+      两条分支相对 main 都是纯新增文件，无冲突。
+- [x] **最小链路已接通并实测**：原始年报 PDF → 页码定位 → 字段结构化 → 确定性复算 → 可追溯报告。
+      启明信息 2023 年报（237 页）改错前报 2 处不一致 + 1 处格式可疑，更正后 0 处不一致，
+      官方更正公告第 2 页字面命中复算值（整条判定链路不读公告）。测试 35 项全绿。
+- [ ] **给组长的进度回复尚未发出**：组长 10-03 20:38 在群里要每人报进度、22:25 私聊追问；
+      齐飞扬 10-04 09:12 已在群里报过。用户侧回复待确认。
+- [ ] 陈颖孜的研报草稿样本与逐条错误标注仍未到位 —— 「研报草稿核查」主线唯一的硬输入缺口。
 
 ---
 
@@ -17,7 +32,7 @@
         缺日期的材料判为"不可用"而非默认放行。
       - 措辞约束 `verification/wording_guard.py`：命中定性断言直接拒绝出报告。
 - [x] 统一数据格式 v1 实现 + JSON Schema + `docs/DATA_FORMAT.md`。
-- [x] 零第三方依赖，23 项测试全绿（`PYTHONPATH=src python -m pytest tests -q`）。
+- [x] 零第三方依赖，23 项测试全绿（封存时）；2026-10-04 合并队友分支并接入真实 PDF 后为 35 项全绿。
 - [x] 齐飞扬的 6 组真实更正案例已拆包审计，结论落成 `docs/CASE_ANALYSIS.md`。
 - [x] 竞赛官方原文重新核对，赛制与硬要求落成 `docs/agent-memory/PROJECT_MEMORY.md`。
 
@@ -46,17 +61,19 @@
 | 5 | LLM 选型与出资方 | ⬜ 等用户 | 官方要求必须有，鼓励国产。建议只用于"主张拆解 / 假设生成 / 措辞改写"，算术留 Python |
 | 6 | 数据源路线 | ⬜ 等用户 | PDF 解析 vs 巨潮结构化接口。建议混合：接口取数保证准确，PDF 负责页码定位 |
 | 7 | 统一数据格式 v1 是否冻结 | ⬜ 等用户 | 已实现，队友要按它交数据 |
-| 8 | 仓库权限 + 队友 GitHub 用户名 | ⬜ 等用户 | 现为 private，队友访问不了 |
+| 8 | 仓库权限 + 队友 GitHub 用户名 | ✅ 已解决 | 实测仓库已可匿名读取；队友分支已正常推到 origin |
 | 9 | 五模块分工 | ⬜ 等用户 | 谁负责 parsers / retrieval / calculators / verification / reporting |
 
 ## 四、下一步动作（用户拍板后立即执行）
 
 不论第 3 条怎么选，下面两件事都成立、都可以先做：
 
-- **A. 跑通 02 启明信息的真实链路**（不依赖拍板）
+- [x] **A. 跑通 02 启明信息的真实链路**（2026-10-04 完成）
   真实 PDF → 页码定位（p51 / p223）→ 复算 → 出结构化报告。
+  命令：`python -m fintrace.cli dividend <年报.pdf> --cutoff 2024-04-01 --publication-date 2024-03-29 --company 启明信息 --notice <更正公告.pdf> --out out/qiming`
+  实现：`parsers/pdf_pages.py`、`parsers/dividend_extract.py`、`verification/dividend_checks.py`、
+  `reporting/dividend_report.py`、`dividend_case.py`；算术唯一源 `calculators/consistency.expected_dividend_yuan`。
   产出可同时用于：视频素材、计划书技术章节、以及验证"跨页勾稽"这类新规则。
-  需要新增一类 `consistency_check` 计算，现有 `ratios.py` 只有比率公式。
 
 - **B. 起草初赛项目计划书框架**（不依赖拍板）
   按官方六个考察维度组织：任务完成度 / 数据与计算准确性 / 分析逻辑严密性 /
@@ -69,4 +86,5 @@
   案例已解压到 `G:/tools/fintrace-tools/_cases/财报更正案例_6组/`
 - GitHub API 客户端（本机无 gh CLI）：`G:/tools/github-tools/gh_api.py`
 - 微信材料分析工具：`G:/tools/WeChatDataAnalysis/`
-- 依赖：pymupdf 1.28.2 已装；项目本身零第三方依赖
+- 依赖：pymupdf 1.28.2 已装（核心链路零第三方依赖，读真实 PDF 走可选依赖 `.[pdf]`）
+- 真实案例 PDF 工作副本：`data/raw/002232/`（.gitignore 已排除，不进版本库）

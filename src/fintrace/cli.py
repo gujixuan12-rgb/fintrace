@@ -3,6 +3,11 @@
     python -m fintrace.cli demo                       # 用内置 mock 跑一遍
     python -m fintrace.cli run data/mock/mock_original_inputs.json --out out/report.json
     python -m fintrace.cli guard "公司虚增收入 2 亿元"  # 单独试措辞守门人
+
+最小链路（真实 PDF）：
+
+    python -m fintrace.cli dividend 年报.pdf --cutoff 2024-04-01 \
+        --publication-date 2024-03-29 --company 启明信息 --notice 更正公告.pdf --out out/qiming
 """
 from __future__ import annotations
 
@@ -11,7 +16,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import orchestrator
+from . import dividend_case, orchestrator
 from .verification import wording_guard as wg
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -51,6 +56,34 @@ def _print_report(rep) -> None:
     print(rep.disclaimer)
 
 
+def _print_dividend_case(res) -> None:
+    print(f"运行日志编号 : {res.run_log_id}")
+    print(f"被核查材料   : {res.annual_file}（{res.page_count} 页）")
+    print(f"预警截止日   : {res.cutoff}")
+    hits = "、".join(f"{k} 第 {v} 页" for k, v in res.pages_hit.items() if v)
+    print(f"页码定位     : {hits or '无'}")
+    base = res.meta.get("base")
+    per10 = res.meta.get("per10")
+    expected = res.meta.get("expected")
+    if expected is not None:
+        print(f"复算         : {base:,} 股 × {per10} 元 ÷ 10 = {expected:,} 元")
+    print(f"结论         : {res.summary_line()}")
+    for f in res.findings:
+        print(f"  [{f.severity}] {f.code}　{f.title}")
+        print(f"      {f.detail}")
+        for e in f.evidence:
+            page = f"第 {e.page} 页" if e.page else "页码未取到"
+            val = f"　值 = {e.value}" if e.value is not None else ""
+            print(f"      - {e.file} {page}：{e.line}{val}")
+    if res.notice.get("hit"):
+        print(f"事后比对     : 复算值 {res.notice['value']} 出现在 {res.notice['file']} 第 {res.notice['page']} 页")
+    elif res.notice.get("checked"):
+        print(f"事后比对     : 未在公告中字面命中复算值（{res.notice.get('reason', '')}）")
+    if res.saved:
+        print(f"已写出       : {res.saved['report']}")
+        print(f"已写出       : {res.saved['payload']}")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="fintrace", description="财报/研报可追溯风险预警")
     sub = ap.add_subparsers(dest="cmd")
@@ -61,6 +94,15 @@ def main(argv: list[str] | None = None) -> int:
     p_run = sub.add_parser("run", help="用指定输入 JSON 跑")
     p_run.add_argument("inputs")
     p_run.add_argument("--out", default=None)
+
+    p_div = sub.add_parser("dividend", help="最小链路：原始年报 PDF → 页码定位 → 复算 → 报告")
+    p_div.add_argument("pdf", help="被核查的年报 PDF")
+    p_div.add_argument("--cutoff", required=True, help="预警截止日 YYYY-MM-DD")
+    p_div.add_argument("--publication-date", required=True, help="该年报的发布日期 YYYY-MM-DD")
+    p_div.add_argument("--notice", default=None, help="官方更正公告 PDF（可选，仅事后检验）")
+    p_div.add_argument("--company", default="", help="主体名称")
+    p_div.add_argument("--case-id", default="", help="案例编号，缺省取文件名")
+    p_div.add_argument("--out", default=None, help="输出目录（写 payload.json 与 报告.md）")
 
     p_guard = sub.add_parser("guard", help="试措辞守门人")
     p_guard.add_argument("text")
@@ -85,6 +127,29 @@ def main(argv: list[str] | None = None) -> int:
             print()
             print(f"已写出：{out}")
             print(f"已写出：{rec_path}")
+        return 0
+
+    if a.cmd == "dividend":
+        try:
+            res = dividend_case.run_pdf_case(
+                a.pdf,
+                cutoff_date=a.cutoff,
+                publication_date=a.publication_date,
+                company=a.company,
+                case_id=a.case_id,
+                notice_path=a.notice,
+                outdir=a.out,
+            )
+        except FileNotFoundError as e:
+            print(f"读不到材料：{e}", file=sys.stderr)
+            return 1
+        except ImportError as e:
+            print(str(e), file=sys.stderr)
+            return 1
+        except ValueError as e:
+            print(f"拒绝：{e}", file=sys.stderr)
+            return 1
+        _print_dividend_case(res)
         return 0
 
     if a.cmd == "guard":

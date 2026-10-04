@@ -15,7 +15,8 @@
 | 项 | 状态 |
 |---|---|
 | 方向 | **存疑**：2026-09-26 团队定调"事前风险预警"，但官方选题五定义的是"核查给定的研报草稿"，且要求可量化评测 |
-| 代码 | 八步主干已打通，用虚构 mock 数据可跑通端到端，23 项测试通过 |
+| 代码 | 八步主干已打通，用虚构 mock 数据可跑通端到端；**真实 PDF 最小链路已接通并实测** |
+| 测试 | 35 项全绿（`PYTHONPATH=src python -m pytest tests -q`） |
 | 真实数据 | 已盘点未接入。6 组真实更正案例已审计，见 `docs/CASE_ANALYSIS.md` |
 | 大模型 | **尚未接入**。官方要求"至少使用一个大语言模型作为核心推理引擎"，当前不符合 |
 | 统一数据格式 | v1 已定稿（`schemas/claim_record.schema.json`），待其他成员确认 |
@@ -51,6 +52,35 @@
 编排在 `orchestrator.py::run()`，一次运行同时产出：
 - `records` —— 统一数据格式 v1 的 `ClaimRecord` 列表（给其他成员 / 前端）
 - `report` —— 结构化风险报告（给人看，已过措辞约束）
+
+---
+
+## 1.5 最小链路：原始 PDF → 报告
+
+队长 2026-10-02 分工里要求「先给出初赛前能完成的最小链路」。当前实现：
+
+```
+① 读 PDF 取页      parsers/pdf_pages.py        页码 1 起；pymupdf 延迟导入
+② 抽分红字段      parsers/dividend_extract.py 每个字段带页码 + 原文行，取不到就留空
+③ 确定性复算      calculators/consistency.py  expected_dividend_yuan() 是唯一算术源
+④ 一致性判定      verification/dividend_checks.py  D1~D5，error / warn / info 分级
+⑤ 报告            reporting/dividend_report.py    payload.json + 报告.md
+编排在 dividend_case.py::run_pdf_case()
+```
+
+材料级时间过滤是硬门：`publication_date` 晚于 `prediction_cutoff_date` 的 PDF 直接被拒绝，
+不会进入抽字段环节。
+
+**02 启明信息（002232）2023 年年报（237 页）上的实测结果：**
+
+| 路径 | 结果 |
+|---|---|
+| 改错前年报 | 自动定位第 51 页利润分配表、第 223 页期后事项；复算 4,085,484.55 元，与第 51 页披露值 408,548.46 元差 10 倍 → **报 2 处不一致 + 1 处格式可疑** |
+| 事后比对 | 官方更正公告第 2 页字面命中该复算值（公告晚于截止日，**未参与判定**） |
+| 更正后年报 | 同一套规则 **0 处不一致**（误报控制） |
+
+回归口径：自动定位路径与人工摘录路径（`data/demo/qiming_2023_dividend.json`）必须给出同一个
+复算值，`tests/test_dividend_case.py` 守着这条。
 
 ---
 
@@ -95,10 +125,16 @@ python -m fintrace.cli demo                          # 用内置 mock 跑一遍
 python -m fintrace.cli run data/mock/mock_original_inputs.json --out out/report.json
 python -m fintrace.cli guard "经核查，公司虚增收入 2 亿元"   # 试措辞守门人（会被拒绝）
 
-python -m pytest tests -q                             # 23 项
+# 最小链路：真实年报 PDF → 页码定位 → 确定性复算 → 可追溯报告
+python -m fintrace.cli dividend data/raw/002232/01_改错前_2023年年度报告.pdf \
+    --cutoff 2024-04-01 --publication-date 2024-03-29 \
+    --company 启明信息 --notice data/raw/002232/02_官方更正公告.pdf \
+    --out out/qiming
+
+python -m pytest tests -q                             # 35 项
 ```
 
-零第三方依赖（除测试可选装 `jsonschema`）。接真实 PDF 时需要 `pymupdf`。
+核心链路零第三方依赖；读真实 PDF 需要 `pymupdf`（`pip install -e ".[pdf]"`，可选依赖）。
 
 ---
 
@@ -118,7 +154,7 @@ fintrace/
 │  ├─ models.py
 │  ├─ orchestrator.py
 │  ├─ cli.py
-│  ├─ parsers/        ①
+│  ├─ parsers/        ①（document_recognizer / pdf_pages / dividend_extract）
 │  ├─ retrieval/      ③⑤
 │  ├─ calculators/    ④
 │  ├─ verification/   ②⑥⑦ + 措辞守门人

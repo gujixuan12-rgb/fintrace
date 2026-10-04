@@ -17,6 +17,19 @@ def _decimal(value: Any) -> Decimal:
     return number
 
 
+def expected_dividend_yuan(shares: Any, dividend_per_ten_shares_yuan: Any) -> Decimal:
+    """现金分红复算：股本 × 每 10 股派息数 ÷ 10，四舍五入到分。
+
+    这是唯一的算术源：无论输入是人工摘录还是自动从 PDF 定位，都调它，
+    保证两条路径不会算出两个数。
+    """
+    base = _decimal(shares)
+    rate = _decimal(dividend_per_ten_shares_yuan)
+    if base <= 0 or rate < 0:
+        raise ValueError("股本须为正，分红金额不得为负")
+    return (base * rate / Decimal(10)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+
 def dividend_reconciliation(
     shares: Any,
     dividend_per_ten_shares_yuan: Any,
@@ -30,7 +43,7 @@ def dividend_reconciliation(
     other = _decimal(other_page_total_wan_yuan)
     if base <= 0 or rate < 0 or disclosed < 0 or other < 0:
         raise ValueError("股本须为正，分红金额不得为负")
-    expected = (base * rate / Decimal(10)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    expected = expected_dividend_yuan(base, rate)
     other_rounded = (expected / Decimal(10000)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
     return {
         "formula": "股本×每10股派息额÷10",

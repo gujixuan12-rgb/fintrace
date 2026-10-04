@@ -1,0 +1,11 @@
+{
+  "document_name": "金融投研——案例：美晨生态2020（多处）.docx",
+  "claims": [
+    {"claim_id": "C001", "claim_type": "amount", "metric_id": "revenue", "period": "2020", "scope": "合并", "value": "30.65", "unit": "亿元", "approximate": true, "cited_page": 8},
+    {"claim_id": "C002", "claim_type": "amount", "metric_id": "net_profit", "period": "2020", "scope": null, "value": "-0.97", "unit": "亿元", "approximate": true, "cited_page": 8},
+    {"claim_id": "C003", "claim_type": "amount", "metric_id": "operating_cash_flow", "period": "2020", "scope": "合并", "value": "-2.27", "unit": "亿元", "approximate": true, "cited_page": 8},
+    {"claim_id": "C004", "claim_type": "ratio", "metric_id": "cash_conversion", "feature_key": "ocf_to_revenue_2020", "period": "2020", "value": "-7.4", "unit": "%", "absolute_tolerance": "0.001"},
+    {"claim_id": "C005", "claim_type": "citation", "metric_id": "contract_assets", "period": "2020", "scope": "合并", "cited_page": 13},
+    {"claim_id": "C006", "claim_type": "direction", "metric_id": "attributable_net_profit", "period": "2020", "prior_period": "2019", "scope": "归母", "direction": "increase", "cited_page": 8}
+  ]
+}

@@ -1,0 +1,9 @@
+evidence_id,evidence_role,file_name,page,field_or_label,allowed_for_model_input,notes
+E001,pre_event_input,美晨生态：2020年年度报告（已取消）.pdf,8,营业收入2019与2020,true,原始年报主要会计数据
+E002,pre_event_input,美晨生态：2020年年度报告（已取消）.pdf,8,归母净利润2019与2020,true,不得替换为口径不明的净利润
+E003,pre_event_input,美晨生态：2020年年度报告（已取消）.pdf,8,经营活动现金流量净额2019与2020,true,原始年报主要会计数据
+E004,pre_event_input,美晨生态：2020年年度报告（已取消）.pdf,8,资产总额2020,true,原始年报主要会计数据
+E005,pre_event_input,美晨生态：2020年年度报告（已取消）.pdf,114,应收账款与合同资产账面价值,true,关键审计事项
+L001,ex_post_label,美晨生态：关于前期会计差错更正的公告.pdf,,收入成本确认错误,false,只用于验证
+L002,ex_post_label,美晨生态：关于前期会计差错更正的公告.pdf,,合同资产与商誉减值调整,false,只用于验证
+L003,ex_post_label,美晨生态：《关于对山东美晨生态环境股份有限公司的年报问询函》的回复公告.pdf,,专项鉴证与监管问询,false,只用于验证

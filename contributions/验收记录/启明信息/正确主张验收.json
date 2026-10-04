@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": {
+    "evidence_ready": true,
+    "expected_claim": true,
+    "correct_claim_supported": true,
+    "no_false_error": true,
+    "original_hash": true,
+    "bounded_pdf_pages": true,
+    "no_evaluation_files_in_detector_log": true,
+    "root_cutoff_gate_used": true
+  },
+  "run_log_id": "FT-20240422-a9bc396b8e",
+  "correct_claim_count": 1,
+  "false_error_count": 0,
+  "actual_verdict": "SUPPORTED",
+  "scope": "独立脚本对一个结构化正确主张的核查；不代表完整系统或大模型效果",
+  "detector_result_file": "evidence_reading.json",
+  "evaluation_label_file": "expected_labels.json",
+  "separation": "检测进程已结束后，单独进程读取标准答案和检测结果。"
+}

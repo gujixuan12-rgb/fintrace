@@ -1,0 +1,90 @@
+{
+  "record_count": 300,
+  "numeric_count": 209,
+  "narrative_count": 84,
+  "missing_or_unselected_count": 7,
+  "source_dates": {
+    "2018": "2019-04-26",
+    "2019": "2020-04-20",
+    "2020": "2021-04-20"
+  },
+  "schema_valid": true,
+  "source_guard_warnings": [],
+  "csv_json_identical": true,
+  "source_hashes_verified": true,
+  "quote_locators_verified": true,
+  "visually_verified_numeric_records": [
+    "2018.financial.accounts_receivable_gross",
+    "2018.financial.accounts_receivable_allowance",
+    "2018.financial.unbilled_construction_assets_gross",
+    "2018.financial.other_receivables_allowance",
+    "2019.financial.accounts_receivable_gross",
+    "2019.financial.accounts_receivable_allowance",
+    "2019.financial.notes_receivable_allowance",
+    "2019.financial.long_term_equity_investment_allowance",
+    "2020.financial.accounts_receivable_gross",
+    "2020.financial.accounts_receivable_allowance",
+    "2020.financial.accounts_receivable_individual_allowance",
+    "2020.financial.accounts_receivable_portfolio_allowance",
+    "2020.financial.contract_assets",
+    "2020.financial.contract_assets_gross",
+    "2020.financial.contract_assets_allowance",
+    "2020.financial.contract_assets_retention_gross",
+    "2020.financial.contract_assets_retention_net",
+    "2020.financial.contract_assets_ppp_gross",
+    "2020.financial.contract_assets_ppp_net",
+    "2020.financial.contract_assets_non_ppp_gross",
+    "2020.financial.contract_assets_non_ppp_allowance",
+    "2020.financial.contract_assets_non_ppp_net",
+    "2020.financial.long_term_equity_investment_allowance",
+    "2018.control.ownership_edge_01",
+    "2018.control.ownership_edge_02",
+    "2018.control.ownership_edge_03",
+    "2018.control.ownership_edge_04",
+    "2018.control.ownership_edge_05",
+    "2018.control.ownership_edge_06",
+    "2018.control.ownership_edge_07",
+    "2018.control.ownership_edge_08",
+    "2019.control.ownership_edge_01",
+    "2019.control.ownership_edge_02",
+    "2019.control.ownership_edge_03",
+    "2020.control.ownership_edge_01",
+    "2020.control.ownership_edge_02",
+    "2020.control.ownership_edge_03",
+    "2020.control.ownership_edge_04"
+  ],
+  "visual_review_basis": "跨行金额及图中比例已由提取代理或独立复核代理逐页查看原始PDF渲染图；这些记录不宣称可以只靠连续文字匹配确认数值。",
+  "statement_reconciliations": [
+    {
+      "check": "2018应收账款原值-准备-净额",
+      "difference": "0.00",
+      "passed": true
+    },
+    {
+      "check": "2019应收账款原值-准备-净额",
+      "difference": "0.00",
+      "passed": true
+    },
+    {
+      "check": "2020应收账款原值-准备-净额",
+      "difference": "0.00",
+      "passed": true
+    },
+    {
+      "check": "2020合同资产原值-准备-净额",
+      "difference": "0.00",
+      "passed": true
+    }
+  ],
+  "captain_calculator_features": {
+    "ocf_to_revenue_2019": "0.02123855473683406397055904997",
+    "ocf_to_revenue_2020": "-0.07416299789460039583873416660",
+    "ocf_to_attributable_profit_2019": "0.7771272314803568854959395926",
+    "ocf_to_attributable_profit_2020": "-4.389359063465393750663935673",
+    "revenue_growth_2020": "0.03767113023149255311707350714",
+    "attributable_profit_growth_2020": "-0.3584757620285117154241015444",
+    "revenue_profit_growth_divergence_2020": "0.3961468922600042685411750515",
+    "receivables_contract_assets_to_total_assets_2020": "0.6141463304941712647119598936"
+  },
+  "data_quality_issue_count": 4
+}

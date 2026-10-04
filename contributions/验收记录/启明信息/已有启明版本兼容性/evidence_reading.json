@@ -1,0 +1,187 @@
+{
+  "status": "EVIDENCE_READY",
+  "pdf_content_read": true,
+  "pdf_pages_read": [
+    51,
+    223
+  ],
+  "file_accesses": [
+    {
+      "file_name": "01_改错前_2023年年度报告.pdf",
+      "purpose": "hash_and_size_verification"
+    }
+  ],
+  "tool_calls": [
+    {
+      "tool": "fintrace.verification.cutoff_filter.filter_record",
+      "eligible": true,
+      "reasons": [
+        "全部证据发布于 2024-04-22 或之前"
+      ]
+    },
+    {
+      "tool": "sha256",
+      "actual": "a9f276a963e3233aad87ef3eec860af96e99c0819f6ceebcde39df72468ea0d1",
+      "bytes": 4369829,
+      "matched": true
+    },
+    {
+      "tool": "pypdf_extract_text",
+      "source_id": "qiming_2023_annual_report_original",
+      "pdf_pages": [
+        51,
+        223
+      ],
+      "printed_pages": [
+        51,
+        223
+      ]
+    },
+    {
+      "tool": "check_structured_dividend_claim",
+      "result": {
+        "status": "SUPPORTED",
+        "reason": "所核查每10股派息预案与原始两页证据一致",
+        "flag_as_error": false,
+        "claim_id": "QM-CLAIM-001",
+        "observed_value": "0.10",
+        "claimed_value": "0.10",
+        "unit": "元/10股",
+        "source_pages": [
+          51,
+          223
+        ],
+        "limitation": "仅检查此条主张；不将同报告其他金额的差异传播给该主张，不评价实际派付。"
+      }
+    }
+  ],
+  "observations": {
+    "shares": {
+      "value": "408548455",
+      "unit": "股",
+      "printed_page": 51,
+      "pdf_page": 51,
+      "quote": "分配预案的股本基数（股）                     408548455",
+      "period": "2023A",
+      "scope": "上市公司向全体股东的利润分配预案",
+      "tax_basis": "不适用",
+      "value_status": "reported_observation_not_automatically_validated",
+      "source_id": "qiming_2023_annual_report_original",
+      "source_file": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219596126.PDF",
+      "publication_date": "2024-04-13",
+      "prediction_cutoff_date": "2024-04-22",
+      "available_before_cutoff": true
+    },
+    "dividend_per_ten_shares": {
+      "value": "0.10",
+      "unit": "元/10股",
+      "printed_page": 51,
+      "pdf_page": 51,
+      "quote": "每 10股派息数（元）（含税）                                               0.10",
+      "period": "2023A",
+      "scope": "上市公司向全体股东的利润分配预案",
+      "tax_basis": "含税",
+      "value_status": "reported_observation_not_automatically_validated",
+      "corroborating_evidence": {
+        "pdf_page": 223,
+        "printed_page": 223,
+        "quote": "每 10股派发现金红利 0.10元（含税）"
+      },
+      "source_id": "qiming_2023_annual_report_original",
+      "source_file": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219596126.PDF",
+      "publication_date": "2024-04-13",
+      "prediction_cutoff_date": "2024-04-22",
+      "available_before_cutoff": true
+    },
+    "disclosed_dividend": {
+      "value": "408548.46",
+      "unit": "元",
+      "printed_page": 51,
+      "pdf_page": 51,
+      "quote": "现金分红金额（元）（含税）                                             408,548.46",
+      "period": "2023A",
+      "scope": "上市公司向全体股东的利润分配预案",
+      "tax_basis": "含税",
+      "value_status": "reported_observation_not_automatically_validated",
+      "source_id": "qiming_2023_annual_report_original",
+      "source_file": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219596126.PDF",
+      "publication_date": "2024-04-13",
+      "prediction_cutoff_date": "2024-04-22",
+      "available_before_cutoff": true
+    },
+    "other_page_total": {
+      "value": "408.55",
+      "unit": "万元",
+      "printed_page": 223,
+      "pdf_page": 223,
+      "quote": "利润\n                                分配总额为 408.55万元",
+      "period": "2023A",
+      "scope": "上市公司向全体股东的利润分配预案",
+      "tax_basis": "含税",
+      "value_status": "reported_observation_not_automatically_validated",
+      "source_id": "qiming_2023_annual_report_original",
+      "source_file": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+      "source_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219596126.PDF",
+      "publication_date": "2024-04-13",
+      "prediction_cutoff_date": "2024-04-22",
+      "available_before_cutoff": true
+    }
+  },
+  "claim_check": {
+    "status": "SUPPORTED",
+    "reason": "所核查每10股派息预案与原始两页证据一致",
+    "flag_as_error": false,
+    "claim_id": "QM-CLAIM-001",
+    "observed_value": "0.10",
+    "claimed_value": "0.10",
+    "unit": "元/10股",
+    "source_pages": [
+      51,
+      223
+    ],
+    "limitation": "仅检查此条主张；不将同报告其他金额的差异传播给该主张，不评价实际派付。"
+  },
+  "page_count": 237,
+  "source_sha256": "a9f276a963e3233aad87ef3eec860af96e99c0819f6ceebcde39df72468ea0d1",
+  "run_log_id": "FT-20240422-a9bc396b8e",
+  "page_excerpts": [
+    {
+      "pdf_page": 51,
+      "printed_page": 51,
+      "text": "本报告期利润分配及资本公积金转增股本情况\n适用 □不适用\n\n每 10股送红股数（股）                                                   0\n每 10股派息数（元）（含税）                                               0.10\n分配预案的股本基数（股）                     408548455\n现金分红金额（元）（含税）                                             408,548.46\n以其他方式（如回购股份）现金分红金额（元）                                         0.00\n现金分红总额（含其他方式）（元）                 408548.455\n可分配利润（元）                                                24,398,126.94\n现金分红总额（含其他方式）占利润分配总额的比例          100%\n                           本次现金分红情况\n公司发展阶段属成长期且有重大资金支出安排的，进行利润分配时，现金分红在本次利润分配中所占比例最低应达到\n20％\n                   利润分配或资本公积金转增预案的详细情况说明\n以 2024年4月12日公司总股本 408548455股为基数，像全体股东按每10股分配0.10元（含税）进行现金分红，其他\n未分配利润暂不分配。"
+    },
+    {
+      "pdf_page": 223,
+      "printed_page": 223,
+      "text": "2、利润分配情况\n\n\n拟分配每 10股派息数（元）                                              0.1\n经审议批准宣告发放的每  10股派息数（元）                                      0.1\n                                以2024年4月12日公司总股本408,548,455股为基数，\n利润分配方案                          向全体股东按每 10股派发现金红利 0.10元（含税），利润\n                                分配总额为 408.55万元，剩余未分配利润暂不分配，用作\n                                公司补充流动资金。\n\n\n\n                                                             223"
+    }
+  ],
+  "evidence_refs": [
+    {
+      "source_id": "qiming_2023_annual_report_original",
+      "file_name": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+      "source_type": "original_annual_report",
+      "publication_date": "2024-04-13",
+      "page": 51,
+      "quoted_text": "每 10股派息数（元）（含税）                                               0.10",
+      "available_before_cutoff": true
+    },
+    {
+      "source_id": "qiming_2023_annual_report_original",
+      "file_name": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+      "source_type": "original_annual_report",
+      "publication_date": "2024-04-13",
+      "page": 223,
+      "quoted_text": "每 10股派发现金红利 0.10元（含税）",
+      "available_before_cutoff": true
+    }
+  ],
+  "input_files_read": [
+    "qiming_2023_dividend.json",
+    "claim_input.json"
+  ],
+  "evaluation_files_read": []
+}

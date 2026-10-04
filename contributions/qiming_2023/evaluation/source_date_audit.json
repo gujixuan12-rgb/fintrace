@@ -1,0 +1,49 @@
+{
+  "company": "启明信息技术股份有限公司",
+  "stock_code": "002232",
+  "org_id": "9900004567",
+  "verified_on": "2026-10-04",
+  "verification_method": "CNINFO official website rendered DOM; no date inferred solely from PDF URL",
+  "original_annual_report": {
+    "announcement_id": "1219596126",
+    "announcement_title": "2023年年度报告",
+    "publication_date": "2024-04-13",
+    "publication_date_precision": "day",
+    "publication_time": null,
+    "publication_date_status": "official_page_verified",
+    "official_detail_url": "https://www.cninfo.com.cn/new/disclosure/detail?stockCode=002232&announcementId=1219596126",
+    "official_detail_visible_date": "2024.04\n13",
+    "official_detail_visible_title": "2023年年度报告",
+    "official_detail_visible_company": "启明信息 002232",
+    "official_company_link": "https://www.cninfo.com.cn/new/disclosure/stock?plate=&stockCode=002232&orgId=9900004567",
+    "official_pdf_url": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219596126.PDF",
+    "embedded_pdf_src_observed": "https://static.cninfo.com.cn/finalpage/2024-04-13/1219596126.PDF#navpanes=0&toolbar=0&statusbar=0&pagemode=thumbs&page=1",
+    "verified_fields": ["company", "stock_code", "org_id", "title", "publication_date", "official_pdf_url"]
+  },
+  "correction_announcement_metadata_only": {
+    "announcement_id": "1219734416",
+    "announcement_title": "启明信息：关于2023年年度报告的更正公告",
+    "publication_date": "2024-04-23",
+    "publication_date_precision": "day",
+    "publication_time": null,
+    "publication_date_status": "official_list_verified",
+    "official_list_url": "https://www.cninfo.com.cn/new/disclosure/stock?plate=&stockCode=002232&orgId=9900004567",
+    "list_search_field": "标题关键字",
+    "list_search_query": "关于2023年年度报告的更正公告",
+    "visible_table_headers": ["公告标题", "公告时间"],
+    "visible_table_row": "启明信息：关于2023年年度报告的更正公告 2024-04-23",
+    "official_detail_link_observed_not_opened": "https://www.cninfo.com.cn/new/disclosure/detail?plate=szse&orgId=9900004567&stockCode=002232&announcementId=1219734416&announcementTime=2024-04-23",
+    "detail_opened": false,
+    "pdf_opened": false,
+    "body_read": false,
+    "use": "cutoff boundary metadata only; excluded from model evidence"
+  },
+  "existing_demo_cutoff_check": {
+    "as_of_date": "2024-04-22",
+    "policy": "publication_date <= as_of_date, by calendar date",
+    "original_annual_report_eligible": true,
+    "correction_announcement_eligible": false,
+    "cutoff_precedes_correction_date": true,
+    "note": "Official pages expose calendar dates, not verified first-publication timestamps. This establishes the demo's day-level boundary; it does not certify intraday availability or separately approve a team-wide evaluation cutoff."
+  }
+}

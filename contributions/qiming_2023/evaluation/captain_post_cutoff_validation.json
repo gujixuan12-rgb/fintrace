@@ -1,0 +1,12 @@
+{
+  "artifact_role": "evaluation_only_do_not_pass_to_detector_or_agent",
+  "provenance": "来自队长提供的qiming_2023_dividend.json的post_cutoff_validation字段；独立保留，不作为事前证据",
+  "verification_scope": "本次仅在官方公告列表核验标题与发布日期；以下更正后数值是队长提供的评测答案，本次未重新读取更正正文确认",
+  "post_cutoff_validation": {
+    "source_type": "correction_announcement",
+    "publication_date": "2024-04-23",
+    "allowed_for_detection": false,
+    "url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219734416.PDF",
+    "corrected_dividend_yuan": "4085484.55"
+  }
+}

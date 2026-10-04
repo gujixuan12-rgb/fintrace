@@ -1,0 +1,15 @@
+{
+  "claim_id": "QM-CLAIM-001",
+  "sample_type": "team_authored_test_claim",
+  "sample_note": "依据原始年报编写的单条测试主张；不是实际券商研报摘录",
+  "claim_text": "启明信息在2023年年度报告披露的利润分配预案为每10股派发现金红利0.10元（含税）。",
+  "subject": "启明信息技术股份有限公司",
+  "stock_code": "002232",
+  "period": "2023A",
+  "metric": "dividend_per_ten_shares",
+  "value": "0.10",
+  "unit": "元/10股",
+  "tax_basis": "含税",
+  "distribution_status": "proposed",
+  "scope": "上市公司向全体股东的利润分配预案"
+}

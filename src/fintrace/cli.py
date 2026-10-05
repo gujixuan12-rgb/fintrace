@@ -8,6 +8,16 @@
 
     python -m fintrace.cli dividend 年报.pdf --cutoff 2024-04-01 \
         --publication-date 2024-03-29 --company 启明信息 --notice 更正公告.pdf --out out/qiming
+
+大模型（可选，配置见 .secrets/llm.json）：
+
+    python -m fintrace.cli llm                    # 测连通性，真调一次接口
+    python -m fintrace.cli dividend 年报.pdf --cutoff 2024-04-01 \
+        --publication-date 2024-03-29 --llm       # 跑完再让模型讲成人话
+
+本机核验台（浏览器里手动跑）：
+
+    python -m fintrace.cli ui --port 8911        # 打开 http://127.0.0.1:8911
 """
 from __future__ import annotations
 
@@ -16,7 +26,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import dividend_case, orchestrator
+from . import dividend_case, llm, orchestrator
 from .verification import wording_guard as wg
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -84,6 +94,29 @@ def _print_dividend_case(res) -> None:
         print(f"已写出       : {res.saved['payload']}")
 
 
+def _print_llm_explanation(res) -> None:
+    """把确定性结果交给模型讲成人话。模型不可用时只提示，不影响核查结论。"""
+    cfg = llm.load_config()
+    view = llm.public_config(cfg)
+    d = res.to_dict()
+    print()
+    print("-" * 62)
+    print(f"AI 解释　模型 {view['model']}　key {view['key_hint'] or '未配置'}")
+    print("-" * 62)
+    try:
+        text = llm.explain(
+            annual_file=res.annual_file,
+            meta={"复算过程": d["recalculation"], "页码定位": d["pages_hit"]},
+            findings=d["findings"],
+            report_markdown=res.markdown,
+            cfg=cfg,
+        )
+    except llm.LLMError as e:
+        print(f"大模型暂时不可用：{e}")
+        return
+    print(text)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="fintrace", description="财报/研报可追溯风险预警")
     sub = ap.add_subparsers(dest="cmd")
@@ -103,6 +136,15 @@ def main(argv: list[str] | None = None) -> int:
     p_div.add_argument("--company", default="", help="主体名称")
     p_div.add_argument("--case-id", default="", help="案例编号，缺省取文件名")
     p_div.add_argument("--out", default=None, help="输出目录（写 payload.json 与 报告.md）")
+    p_div.add_argument("--llm", action="store_true", help="跑完再调大模型，把结果讲成人话")
+
+    p_llm = sub.add_parser("llm", help="测大模型连通性（真调一次接口）")
+    p_llm.add_argument("--model", default=None, help="临时覆盖模型名")
+
+    p_ui = sub.add_parser("ui", help="启动本机核验台（在浏览器里手动跑最小链路）")
+    p_ui.add_argument("--port", type=int, default=8911, help="端口，默认 8911")
+    p_ui.add_argument("--host", default="127.0.0.1", help="监听地址（默认只监听本机）")
+    p_ui.add_argument("--no-browser", action="store_true", help="不自动打开浏览器")
 
     p_guard = sub.add_parser("guard", help="试措辞守门人")
     p_guard.add_argument("text")
@@ -150,6 +192,33 @@ def main(argv: list[str] | None = None) -> int:
             print(f"拒绝：{e}", file=sys.stderr)
             return 1
         _print_dividend_case(res)
+        if a.llm:
+            _print_llm_explanation(res)
+        return 0
+
+    if a.cmd == "llm":
+        cfg = llm.load_config()
+        if a.model:
+            cfg["model"] = a.model
+        view = llm.public_config(cfg)
+        print(f"base_url : {view['base_url']}")
+        print(f"模型     : {view['model']}")
+        print(f"key      : {view['key_hint'] or '未配置'}（来源：{view['key_from'] or '—'}）")
+        if not view["has_key"]:
+            print("\n没有配 key：把 key 放进 .secrets/llm.json，或设环境变量 DEEPSEEK_API_KEY。")
+            return 1
+        try:
+            text = llm.chat([{"role": "user", "content": "只回复两个字：可用"}], cfg=cfg)
+        except llm.LLMError as e:
+            print(f"\n连通失败：{e}")
+            return 1
+        print(f"\n连通正常，模型回复：{text}")
+        return 0
+
+    if a.cmd == "ui":
+        from . import webapp
+
+        webapp.serve(host=a.host, port=a.port, open_browser=not a.no_browser)
         return 0
 
     if a.cmd == "guard":

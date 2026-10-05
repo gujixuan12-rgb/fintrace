@@ -16,9 +16,9 @@
 |---|---|
 | 方向 | **存疑**：2026-09-26 团队定调"事前风险预警"，但官方选题五定义的是"核查给定的研报草稿"，且要求可量化评测 |
 | 代码 | 八步主干已打通，用虚构 mock 数据可跑通端到端；**真实 PDF 最小链路已接通并实测** |
-| 测试 | 35 项全绿（`PYTHONPATH=src python -m pytest tests -q`） |
+| 测试 | 46 项全绿（`PYTHONPATH=src python -m pytest tests -q`；另有 2 项联网用例默认跳过） |
 | 真实数据 | 已盘点未接入。6 组真实更正案例已审计，见 `docs/CASE_ANALYSIS.md` |
-| 大模型 | **尚未接入**。官方要求"至少使用一个大语言模型作为核心推理引擎"，当前不符合 |
+| 大模型 | **已接入 DeepSeek**（断言拆解 + 结果解释）；判定环节仍完全由确定性代码完成，模型不参与算数 |
 | 统一数据格式 | v1 已定稿（`schemas/claim_record.schema.json`），待其他成员确认 |
 
 **三份必读文档：**
@@ -84,6 +84,40 @@
 
 ---
 
+---
+
+## 1.6 大模型层（DeepSeek）
+
+官方硬要求「至少使用一个大语言模型作为核心推理引擎」。当前接入两件事：
+
+| 能力 | 入口 | 做什么 |
+|---|---|---|
+| 断言拆解 | `llm.decompose_claims()` | 把一段材料原文拆成**可核验断言**（带指标 / 数值 / 单位 / 报告期 / 页码） |
+| 结果解释 | `llm.explain()` | 把**已经算完**的确定性结果讲成人话，给出修改建议与复核要点 |
+
+**模型不参与判定。** 复算与一致性判定仍由 `calculators/`、`verification/` 的确定性代码完成，
+模型看不到也改不了那一步的结果。提示词里写死三条红线：不得下定性结论（造假 / 虚增 / 舞弊一类措辞）、
+不得引入给定材料之外的数字、每条输出必须引用出处。
+
+实现只用标准库 `urllib` 直连 OpenAI 兼容接口（`POST {base_url}/chat/completions`），
+**不给主仓库引入任何第三方依赖**。
+
+**配置**（按优先级）：环境变量 `FINTRACE_LLM_API_KEY` / `DEEPSEEK_API_KEY` /
+`OPENAI_API_KEY` → 本机 `.secrets/llm.json` → 项目根 `.env`。三者都已在 `.gitignore` 里，
+**任何情况下不要把 key 写进代码或提交进仓库**。界面与接口只回「有没有配」和掩码（如 `sk-ab…12cd`），
+明文永不出后端。
+
+```bash
+python -m fintrace.cli llm                    # 测连通性，真调一次接口
+python -m fintrace.cli dividend 年报.pdf --cutoff 2024-04-01 \
+    --publication-date 2024-03-29 --llm       # 跑完核查再让模型讲成人话
+```
+
+核验台（`python -m fintrace.cli ui`）的结果区也有「让 AI 讲成人话」按钮。
+没配 key 时确定性的核查照常出结果，只有解释功能会提示不可用 —— **降级不影响主链路**。
+
+---
+
 ## 2. 三条硬约束
 
 ### 2.1 时间过滤（代码级硬门，不是提示词）
@@ -131,7 +165,11 @@ python -m fintrace.cli dividend data/raw/002232/01_改错前_2023年年度报告
     --company 启明信息 --notice data/raw/002232/02_官方更正公告.pdf \
     --out out/qiming
 
-python -m pytest tests -q                             # 35 项
+python -m fintrace.cli llm                             # 测大模型连通性（真调一次）
+python -m fintrace.cli ui --port 8911                  # 本机核验台（含「让 AI 讲成人话」）
+
+python -m pytest tests -q                             # 46 项（2 项联网默认跳过）
+FINTRACE_NET_TESTS=1 python -m pytest tests/test_llm.py   # 打开联网用例
 ```
 
 核心链路零第三方依赖；读真实 PDF 需要 `pymupdf`（`pip install -e ".[pdf]"`，可选依赖）。
@@ -152,7 +190,10 @@ fintrace/
 │  └─ wording_policy.json        措辞约束口径
 ├─ src/fintrace/
 │  ├─ models.py
-│  ├─ orchestrator.py
+│  ├─ orchestrator.py   八步主干
+│  ├─ dividend_case.py  最小链路编排
+│  ├─ llm.py            大模型层（断言拆解 / 结果解释）
+│  ├─ webapp.py         本机核验台（标准库实现）
 │  ├─ cli.py
 │  ├─ parsers/        ①（document_recognizer / pdf_pages / dividend_extract）
 │  ├─ retrieval/      ③⑤

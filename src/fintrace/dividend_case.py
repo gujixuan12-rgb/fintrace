@@ -74,6 +74,7 @@ class DividendCaseResult:
             "company": self.company,
             "annual_file": self.annual_file,
             "page_count": self.page_count,
+            "pages_hit": self.pages_hit,
             "conclusion": self.payload["conclusion"],
             "recalculation": self.payload["recalculation"],
             "findings": [f.to_dict() for f in self.findings],

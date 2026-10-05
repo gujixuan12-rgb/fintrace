@@ -30,3 +30,4 @@ desktop.ini
 *.key
 *api-key*
 credentials.json
+.secrets/

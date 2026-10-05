@@ -1,0 +1,267 @@
+{
+  "artifact_role": "evaluation_only_do_not_pass_to_detector_or_agent",
+  "warning": "本文件是评测答案。检测流程、提示词、检索索引一律不得读取本文件，否则指标无意义。",
+  "sample_id": "QM-DRAFT-2023-001",
+  "draft_file": "data/annotations/drafts/qiming_2023_research_draft.md",
+  "sample_type": "team_authored_research_draft",
+  "sample_note": "我方构造的测试用研报草稿，非真实券商研报。数字取自原始年报公开披露值，错误由我方主动植入。",
+  "source": {
+    "source_id": "qiming_2023_annual_report_original",
+    "title": "启明信息技术股份有限公司2023年年度报告",
+    "stock_code": "002232",
+    "source_publication_date": "2024-04-13",
+    "pdf_page_count": 237,
+    "source_sha256": "a9f276a963e3233aad87ef3eec860af96e99c0819f6ceebcde39df72468ea0d1",
+    "local_path_hint": "data/raw/002232/01_改错前_2023年年度报告.pdf"
+  },
+  "correction_reference": {
+    "source_id": "qiming_2023_correction_announcement",
+    "title": "关于2023年年度报告的更正公告（公告编号：2024-012）",
+    "publication_date": "2024-04-23",
+    "source_sha256": "e688e3cf5837535d465f41d11c43f356ab91121873a38dac3f2b5d8cdb453fe1",
+    "note": "更正了原年报第51页「现金分红金额」408,548.46元与「现金分红总额」408548.455元，更正值为4,085,484.55元。利润分配预案本身（每10股派0.10元、基数408,548,455股）不变。"
+  },
+  "prediction_cutoff_date": "2024-04-22",
+  "cutoff_rationale": "更正公告于2024-04-23发布。设定截止日2024-04-22，使更正公告落在截止日之后，用于检验防泄漏时间截断：判定不得引用更正公告作为依据。",
+  "quote_format": "PDF抽取文本按行拆散、数字被换行截断，quote字段为去空白拼接后的可读形式。",
+  "summary": {
+    "total_claims": 13,
+    "expected_supported": 6,
+    "expected_contradicted": 6,
+    "expected_insufficient": 1,
+    "error_type_counts": {
+      "numeric_scale": 1,
+      "numeric_mismatch": 1,
+      "cross_reference": 1,
+      "unit": 1,
+      "citation_page": 1,
+      "caliber": 1,
+      "insufficient_evidence": 1
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "QMD-001",
+      "section": "一、经营业绩",
+      "claim_text": "公司2023年实现营业收入12.43亿元，同比下降19.33%",
+      "metric": "revenue",
+      "value": "1243188170.21",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "basis": "年报第7页主要会计数据表披露2023年营业收入1,243,188,170.21元、本年比上年增减-19.33%；第14页经营情况讨论再次以124,318.82万元、减少19.33%表述，两处互证。",
+      "evidence": [
+        {"pdf_page": 7, "printed_page": 7, "quote": "营业收入（元）1,243,188,170.21 ... 本年比上年增减 -19.33%"},
+        {"pdf_page": 14, "printed_page": 14, "quote": "公司营业收入本期发生额124,318.82 万元，较上年同期减少19.33%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-002",
+      "section": "一、经营业绩",
+      "claim_text": "归属于上市公司股东的净利润2,931.56万元，同比下降59.93%",
+      "metric": "net_profit_attributable_to_parent",
+      "value": "29315603.26",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "basis": "年报第7页披露2023年归属于上市公司股东的净利润29,315,603.26元、增减-59.93%；第15页以2,931.56万元、减少59.93%表述，两处互证。",
+      "evidence": [
+        {"pdf_page": 7, "printed_page": 7, "quote": "归属于上市公司股东的净利润（元）29,315,603.26 ... -59.93%"},
+        {"pdf_page": 15, "printed_page": 15, "quote": "归属于上市公司股东的净利润2931.56 万元，较上年同期减少59.93%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-003",
+      "section": "一、经营业绩",
+      "claim_text": "基本每股收益0.72元",
+      "metric": "basic_eps",
+      "value": "0.72",
+      "unit": "元/股",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "numeric_scale",
+      "basis": "年报第237页披露归属于公司普通股股东的净利润对应基本每股收益0.0718元/股。草稿写成0.72元，为披露值的10倍，属数量级错误。旁证：归母净利润29,315,603.26元÷股本408,548,455股≈0.0718元/股，可复算排除0.72元。",
+      "suggested_fix": "基本每股收益应为0.0718元（若需保留两位小数可写0.07元，须注明四舍五入）。",
+      "evidence": [
+        {"pdf_page": 237, "printed_page": 237, "quote": "归属于公司普通股股东的净利润 ... 0.0718 ... 0.0718"},
+        {"pdf_page": 7, "printed_page": 7, "quote": "归属于上市公司股东的净利润（元）29,315,603.26"}
+      ]
+    },
+    {
+      "claim_id": "QMD-004",
+      "section": "三、股东回报",
+      "claim_text": "以总股本408,548,455股为基数，每10股派发现金红利0.10元（含税）。据此，本次现金分红金额为408,548.46元",
+      "metric": "cash_dividend_amount",
+      "value": "408548.46",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "cross_reference",
+      "basis": "按草稿自述的预案复算：408,548,455股÷10×0.10元=4,085,484.55元。草稿金额408,548.46元与复算值差10倍。年报第223页资产负债表日后事项自述「利润分配总额为408.55万元」，与4,085,484.55元一致，进一步否证408,548.46元。注意：408,548.46元恰是原年报第51页的披露值（该处已于2024-04-23被官方更正为4,085,484.55元），但按截止日2024-04-22，更正公告不可作为依据，判定须建立在复算与第223页互证之上。",
+      "suggested_fix": "现金分红金额应为4,085,484.55元（约408.55万元）。该表述有抄袭原年报错误披露之嫌，建议核对后改写。",
+      "evidence": [
+        {"pdf_page": 51, "printed_page": 51, "quote": "分配预案的股本基数（股）408548455；每10股派息数（元）（含税）0.10；现金分红金额（元）（含税）408,548.46"},
+        {"pdf_page": 223, "printed_page": 223, "quote": "利润分配总额为408.55 万元"},
+        {"pdf_page": 2, "printed_page": 2, "quote": "以总股本408,548,455 股为基数，向全体股东每10 股派发现金红利0.10 元（含税）"}
+      ]
+    },
+    {
+      "claim_id": "QMD-005",
+      "section": "二、资产与现金流",
+      "claim_text": "归属于上市公司股东的净资产1,385,610.54万元，同比增长0.23%",
+      "metric": "net_assets_attributable_to_parent",
+      "value": "1385610.54",
+      "unit": "万元",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "unit",
+      "basis": "年报第8页披露2023年末归属于上市公司股东的净资产1,385,610,539.28元，即138,561.05万元。草稿单位为万元但数值照抄了以元为单位的数字，导致虚增10倍。同比0.23%与披露一致，错误仅在单位与数值的对应关系。",
+      "suggested_fix": "应写为1,385,610,539.28元，或138,561.05万元（约13.86亿元）。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "归属于上市公司股东的净资产（元）1,385,610,539.28 ... 0.23%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-006",
+      "section": "三、股东回报",
+      "claim_text": "根据年报第88页披露，公司2023年基本每股收益为0.0718元",
+      "metric": "basic_eps_with_citation",
+      "value": "0.0718",
+      "unit": "元/股",
+      "period": "2023A",
+      "cited_page": 88,
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "citation_page",
+      "basis": "数值0.0718元正确，但引用页码错误：每股收益出自年报第237页「净资产收益率及每股收益」表。经检索，第88页为合并利润表，未给出每股收益。",
+      "suggested_fix": "引用页码应为第237页。",
+      "evidence": [
+        {"pdf_page": 237, "printed_page": 237, "quote": "2、净资产收益率及每股收益 ... 基本每股收益（元/股）0.0718"},
+        {"pdf_page": 88, "printed_page": 88, "quote": "五、净利润（净亏损以“－”号填 ... （该页为合并利润表，无每股收益）"}
+      ]
+    },
+    {
+      "claim_id": "QMD-007",
+      "section": "三、股东回报",
+      "claim_text": "按归母净利润口径，公司加权平均净资产收益率为1.66%",
+      "metric": "weighted_avg_roe",
+      "value": "1.66%",
+      "unit": "%",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "caliber",
+      "basis": "年报第237页：归属于公司普通股股东的净利润对应加权平均净资产收益率2.12%；1.66%是「扣除非经常性损益后归属于公司普通股股东的净利润」对应口径。草稿把扣非口径的数值安到归母口径上，属统计口径混用。",
+      "suggested_fix": "按归母净利润口径应为2.12%；若引用1.66%，须注明为扣除非经常性损益后口径。",
+      "evidence": [
+        {"pdf_page": 237, "printed_page": 237, "quote": "归属于公司普通股股东的净利润 2.12% 0.0718 0.0718；扣除非经常性损益后归属于公司普通股股东的净利润 1.66% 0.0564 0.0564"}
+      ]
+    },
+    {
+      "claim_id": "QMD-008",
+      "section": "四、风险提示",
+      "claim_text": "公司2023年综合毛利率为32.5%，较上年有所下滑",
+      "metric": "gross_margin",
+      "value": "32.5%",
+      "unit": "%",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "numeric_mismatch",
+      "basis": "年报第16页按「分客户所处行业」披露：工业信息营业收入1,239,720,956.43元、营业成本1,064,066,560.88元、毛利率14.17%（占公司营业收入99.7%）；按产品披露毛利率8.19%~18.63%。草稿所称32.5%与已披露数据严重不符，且高于任何分项毛利率，无法由披露数据推出。注意方向表述「较上年有所下滑」与披露一致（工业信息毛利率比上年同期减少3.68个百分点），故本条错误仅在水平值，不涉及方向。",
+      "suggested_fix": "综合毛利率应约为14%（对应分客户所处行业毛利率14.17%）。若为自行测算，须注明测算口径、公式与所引页码。",
+      "evidence": [
+        {"pdf_page": 16, "printed_page": 16, "quote": "分客户所处行业 工业信息 1,239,720,956.43 1,064,066,560.88 14.17% -19.43% -15.82% -3.68%"},
+        {"pdf_page": 16, "printed_page": 16, "quote": "分产品 集成服务 12.74%；汽车电子及服务 8.19%；管理软件及服务 18.63%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-009",
+      "section": "二、资产与现金流",
+      "claim_text": "经营活动产生的现金流量净额2.87亿元，同比增长474.79%",
+      "metric": "operating_cash_flow_net",
+      "value": "286681300",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "本条为误报控制负例：草稿使用「亿元」而原文使用「万元」，属正常换算（28,668.13万元=2.8668亿元，约2.87亿元），不得因单位不同或四舍五入而判为错误。",
+      "evidence": [
+        {"pdf_page": 15, "printed_page": 15, "quote": "经营活动产生的现金流量净额28,668.13 万元，同比上期增加了474.79%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-010",
+      "section": "二、资产与现金流",
+      "claim_text": "公司总资产21.77亿元，同比下降2.17%",
+      "metric": "total_assets",
+      "value": "2177194049.11",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "误报控制负例：2,177,194,049.11元约合21.77亿元，与草稿一致。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "总资产（元）2,177,194,049.11 ... -2.17%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-011",
+      "section": "一、经营业绩",
+      "claim_text": "销售费用本期发生额2,232.63万元，同比增长82.19%",
+      "metric": "selling_expense",
+      "value": "22326300",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "evidence": [
+        {"pdf_page": 15, "printed_page": 15, "quote": "销售费用本期发生额2,232.63 万元，比上年同期增加82.19%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-012",
+      "section": "一、经营业绩",
+      "claim_text": "研发费用5,580.05万元，同比下降35.26%",
+      "metric": "rd_expense",
+      "value": "55800500",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "误报控制负例：费用「下降」与利润「下降」方向不同，不得因整篇业绩下滑而推定本条有误。",
+      "evidence": [
+        {"pdf_page": 15, "printed_page": 15, "quote": "研发费用本期发生额5,580.05 万元，比上年同期减少35.26%"}
+      ]
+    },
+    {
+      "claim_id": "QMD-013",
+      "section": "四、风险提示",
+      "claim_text": "以2024年4月12日收盘价计算，公司对应2023年归母净利润的市盈率约为41倍",
+      "metric": "pe_ratio",
+      "value": "41",
+      "unit": "倍",
+      "period": "2023A",
+      "expected_verdict": "INSUFFICIENT",
+      "expected_flag_as_error": false,
+      "error_type": "insufficient_evidence",
+      "basis": "估值倍数被官方明确列为核查项，但计算该值需要2024-04-12的收盘价（或复权价）与一致的口径，原始材料集中只提供了年报、更正公告等财务披露文件，年报本身不披露股价、市值或市盈率，材料内不存在可用的价格来源。因此在给定材料下无法核验，应判「证据不足」并要求补充价格来源，不得因无法复核而径直判为错误。",
+      "missing_input": "2024-04-12 收盘价（或对应复权价）及其数据来源；以及市盈率所用的股本/净利润口径说明。",
+      "suggested_fix": "请补充收盘价来源与计算口径，或删除该估值倍数表述。若已使用材料外数据，须在草稿中标注数据来源与取数时间。",
+      "evidence": [],
+      "evidence_note": "本条无正面证据：材料集内不存在股价类来源文件。核查系统应输出「证据不足」及缺失输入说明，而非伪造页码。"
+    }
+  ],
+  "interpretation_limit": "本样本共13条主张，规模仅够做案例级验证，不足以支撑泛化准确率结论。任何基于本样本的指标须标注为「案例级」。"
+}

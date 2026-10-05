@@ -26,7 +26,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import dividend_case, llm, orchestrator
+from . import dividend_case, draft_review, llm, orchestrator
 from .verification import wording_guard as wg
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -117,6 +117,37 @@ def _print_llm_explanation(res) -> None:
     print(text)
 
 
+
+
+def _print_draft_review(res) -> None:
+    s = res.summary()
+    print(f"运行日志编号 : {res.run_log_id}")
+    print(f"案例         : {res.case_id}　主体 {res.company}")
+    print(f"预测截止日   : {res.cutoff}")
+    print(f"主张合计     : {len(res.claims)} 条　支持 {s['SUPPORTED']} / 矛盾 {s['CONTRADICTED']} / "
+          f"证据不足 {s['INSUFFICIENT']}")
+    for e in res.excluded:
+        print(f"  已排除材料 : {e['file_name']}（{e['publication_date']}）")
+    print()
+    for c in res.claims:
+        v = c["verdict"]
+        et = f"　{v['error_type']}" if v["error_type"] else ""
+        print(f"[{v['label']}{et}] {c['claim_id']}　{c['claim_text'][:60]}")
+        print(f"    依据：{v['basis']}")
+        if v.get("suggested_fix"):
+            print(f"    建议：{v['suggested_fix']}")
+        if v.get("missing_input"):
+            print(f"    缺失输入：{v['missing_input']}")
+        for ev in v.get("evidence", [])[:2]:
+            page = f"第 {ev['page']} 页" if ev.get("page") else "页码未取到"
+            print(f"    证据：{ev['file_name']} {page}：{ev['quote'][:70]}")
+    if res.warnings:
+        print()
+        print(f"提示 {len(res.warnings)} 条")
+        for w in res.warnings[:8]:
+            print(f"  - {w}")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="fintrace", description="财报/研报可追溯风险预警")
     sub = ap.add_subparsers(dest="cmd")
@@ -149,6 +180,12 @@ def main(argv: list[str] | None = None) -> int:
     p_guard = sub.add_parser("guard", help="试措辞守门人")
     p_guard.add_argument("text")
     p_guard.add_argument("--mode", default="pre_hoc", choices=["pre_hoc", "post_hoc"])
+
+    p_draft = sub.add_parser("draft", help="研报草稿核查闭环：草稿 → 拆主张 → 定位 → 复算 → 判定 → 报告")
+    p_draft.add_argument("case", help="案例清单 JSON（材料 + 截止日 + 草稿路径）")
+    p_draft.add_argument("--out", default=None, help="输出目录（写 报告.md 与 payload.json）")
+    p_draft.add_argument("--no-llm", action="store_true", help="不用大模型，走确定性规则抽取")
+    p_draft.add_argument("--evaluate", action="store_true", help="与真值标注对照，输出案例级指标")
     p_guard.add_argument("--confirmed", action="store_true", help="存在监管/公司确认文件")
 
     a = ap.parse_args(argv)
@@ -228,6 +265,31 @@ def main(argv: list[str] | None = None) -> int:
             print(f"拒绝：{e}")
             return 1
         print("通过：未发现定性断言")
+        return 0
+
+    if a.cmd == "draft":
+        payload = json.loads(Path(a.case).read_text(encoding="utf-8"))
+        res = draft_review.run_draft_case(payload, use_llm=not a.no_llm)
+        _print_draft_review(res)
+        if a.out:
+            out = Path(a.out)
+            out.mkdir(parents=True, exist_ok=True)
+            (out / "报告.md").write_text(res.markdown, encoding="utf-8")
+            (out / "payload.json").write_text(
+                json.dumps(res.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
+            print(f"\n已写出：{out / '报告.md'}")
+            print(f"已写出：{out / 'payload.json'}")
+        if a.evaluate:
+            exp = payload.get("expected")
+            if exp:
+                m = draft_review.evaluate(res, ROOT / exp)
+                print("\n--- 案例级指标（样本量小，不得外推）---")
+                print(json.dumps({k: v for k, v in m.items() if k != "rows"},
+                                 ensure_ascii=False, indent=2))
+                for r in m["rows"]:
+                    flag = "一致" if r["match"] else "差异"
+                    print(f"  {flag} {r['claim_id']}　期望 {r['expected']} / 实得 {r['got']}"
+                          f"　错误类型 期望 {r['expected_error_type']} / 实得 {r['got_error_type']}")
         return 0
 
     ap.print_help()

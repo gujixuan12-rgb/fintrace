@@ -1,0 +1,1038 @@
+{
+  "run_id": "FT-20261010-db8e7a46",
+  "mode": "agent",
+  "case": {
+    "task": "audit_draft",
+    "case_id": "QM-DRAFT-2023-001",
+    "company": "启明信息技术股份有限公司",
+    "period": "2023A"
+  },
+  "cutoff": "2024-04-22",
+  "as_of_mode": "historical_replay",
+  "generated_at": "2026-10-10T11:06:50",
+  "counts": {
+    "SUPPORTED": 5,
+    "CONTRADICTED": 2,
+    "INSUFFICIENT": 8
+  },
+  "gate_counts": {
+    "allowed": 8,
+    "blocked": 0,
+    "manual_review": 7
+  },
+  "findings": [
+    {
+      "finding_id": "F-CG15",
+      "claim_id": "CG15",
+      "verdict": "SUPPORTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-7-0 比对（材料值已换算到 亿元 并按 2 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-7-0",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-7-0",
+          "value": "1,243,188,170.21",
+          "raw": "1,243,188,170.21",
+          "unit": "元"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-7-0"
+      ],
+      "relation_refs": [
+        "R-CG15"
+      ],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG15' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG15' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG15' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG16",
+      "claim_id": "CG16",
+      "verdict": "SUPPORTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-7-1 比对（材料值已换算到 万元 并按 2 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-7-1",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-7-1",
+          "value": "29,315,603.26",
+          "raw": "29,315,603.26",
+          "unit": "元"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-7-1"
+      ],
+      "relation_refs": [
+        "R-CG16"
+      ],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG16' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG16' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG16' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG17",
+      "claim_id": "CG17",
+      "verdict": "CONTRADICTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-7-4 比对（材料值已换算到 元 并按 2 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-7-4",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-7-4",
+          "value": "0.0718",
+          "raw": "0.0718",
+          "unit": "元/股"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-7-4"
+      ],
+      "relation_refs": [
+        "R-CG17"
+      ],
+      "citation_pages": [],
+      "correction": {
+        "value": "0.0718",
+        "unit": "元/股",
+        "source_page": "FT-20261010-db8e7a46-ROW-D-01-7-4",
+        "converted": "0.07",
+        "converted_unit": "元"
+      },
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG17' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG17' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG17' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [
+        "RISK_SIGNAL_DETECTED",
+        "FURTHER_VERIFICATION_SUGGESTED"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG18",
+      "claim_id": "CG18",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG19",
+      "claim_id": "CG19",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG21",
+      "claim_id": "CG21",
+      "verdict": "SUPPORTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-8-6 比对（材料值已换算到 亿元 并按 2 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-8-6",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-8-6",
+          "value": "2,177,194,049.11",
+          "raw": "2,177,194,049.11",
+          "unit": "元"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-8-6"
+      ],
+      "relation_refs": [
+        "R-CG21"
+      ],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG21' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG21' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG21' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG22",
+      "claim_id": "CG22",
+      "verdict": "CONTRADICTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-8-7 比对（材料值已换算到 万元 并按 2 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-8-7",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-8-7",
+          "value": "1,385,610,539.28",
+          "raw": "1,385,610,539.28",
+          "unit": "元"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-8-7"
+      ],
+      "relation_refs": [
+        "R-CG22"
+      ],
+      "citation_pages": [],
+      "correction": {
+        "value": "1,385,610,539.28",
+        "unit": "元",
+        "source_page": "FT-20261010-db8e7a46-ROW-D-01-8-7",
+        "converted": "138561.05",
+        "converted_unit": "万元"
+      },
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG22' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG22' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG22' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [
+        "RISK_SIGNAL_DETECTED",
+        "FURTHER_VERIFICATION_SUGGESTED"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG23",
+      "claim_id": "CG23",
+      "verdict": "SUPPORTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-7-3 比对（材料值已换算到 亿元 并按 2 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-7-3",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-7-3",
+          "value": "286,681,291",
+          "raw": "286,681,291",
+          "unit": "元"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-7-3"
+      ],
+      "relation_refs": [
+        "R-CG23"
+      ],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG23' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG23' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG23' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG25",
+      "claim_id": "CG25",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG26",
+      "claim_id": "CG26",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG26",
+      "claim_id": "CG26",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG27",
+      "claim_id": "CG27",
+      "verdict": "SUPPORTED",
+      "error_type": "",
+      "basis": "与已核验断言 FT-20261010-db8e7a46-D-01-7-4 比对（材料值已换算到 元 并按 4 位小数对齐）",
+      "suggested_fix": "",
+      "evidence": [
+        {
+          "assertion_id": "FT-20261010-db8e7a46-D-01-7-4",
+          "span_id": "FT-20261010-db8e7a46-ROW-D-01-7-4",
+          "value": "0.0718",
+          "raw": "0.0718",
+          "unit": "元/股"
+        }
+      ],
+      "assertion_refs": [
+        "FT-20261010-db8e7a46-D-01-7-4"
+      ],
+      "relation_refs": [
+        "R-CG27"
+      ],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [
+              "V2: 第0条引用缺文件名或页码，无法回查原件"
+            ],
+            "notes": [],
+            "n": 1
+          },
+          "V3": {
+            "blocked": [],
+            "manual": [
+              "V3: 关系 'R-CG27' 未给出适用条件，无法判定适用性"
+            ]
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": [
+          "V2: 第0条引用缺文件名或页码，无法回查原件",
+          "V3: 关系 'R-CG27' 未给出适用条件，无法判定适用性"
+        ]
+      },
+      "publish": "manual_review",
+      "block_reasons": [
+        "V2: 第0条引用缺文件名或页码，无法回查原件",
+        "V3: 关系 'R-CG27' 未给出适用条件，无法判定适用性"
+      ],
+      "report_labels": [],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG28",
+      "claim_id": "CG28",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG30",
+      "claim_id": "CG30",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    },
+    {
+      "finding_id": "F-CG31",
+      "claim_id": "CG31",
+      "verdict": "INSUFFICIENT",
+      "error_type": "",
+      "basis": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）",
+      "suggested_fix": "",
+      "evidence": [],
+      "assertion_refs": [],
+      "relation_refs": [],
+      "citation_pages": [],
+      "correction": {},
+      "audit": {
+        "v_checks": {
+          "V1": {
+            "ok": true,
+            "reasons": []
+          },
+          "V2": {
+            "blocked": [],
+            "manual": [],
+            "notes": [],
+            "n": 0
+          },
+          "V3": {
+            "blocked": [],
+            "manual": []
+          },
+          "V5": {
+            "blocked": [],
+            "manual": []
+          }
+        },
+        "v_manual": []
+      },
+      "publish": "allowed",
+      "block_reasons": [],
+      "report_labels": [
+        "INSUFFICIENT_INFORMATION"
+      ],
+      "rules_version": "",
+      "rule_id": "",
+      "rounding_step": ""
+    }
+  ],
+  "residuals": [
+    {
+      "claim_id": "",
+      "kind": "failed_tool",
+      "text": "步骤2 t_compute 失败：bad_args",
+      "reason": "失败的工具调用"
+    },
+    {
+      "claim_id": "",
+      "kind": "failed_tool",
+      "text": "步骤3 t_compute 失败：bad_args",
+      "reason": "失败的工具调用"
+    },
+    {
+      "claim_id": "",
+      "kind": "failed_tool",
+      "text": "步骤4 t_knowledge 失败：bad_args",
+      "reason": "失败的工具调用"
+    },
+    {
+      "claim_id": "CG15",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    },
+    {
+      "claim_id": "CG16",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    },
+    {
+      "claim_id": "CG17",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    },
+    {
+      "claim_id": "CG21",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    },
+    {
+      "claim_id": "CG22",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    },
+    {
+      "claim_id": "CG23",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    },
+    {
+      "claim_id": "CG27",
+      "kind": "blocked",
+      "text": "引用缺定位信息（file_name='', page=None）",
+      "reason": "无法回查原文"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CG15",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG16",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG17",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG18",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG19",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG21",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG22",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG23",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG25",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG26",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG26",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG27",
+      "status": "verified",
+      "open_questions": [],
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG28",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG30",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG31",
+      "status": "insufficient",
+      "open_questions": [],
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    }
+  ],
+  "documents": [
+    {
+      "doc_id": "D-01",
+      "source_id": "qiming_2023_annual_report_original",
+      "file_name": "01_改错前_2023年年度报告.pdf",
+      "source_type": "original_annual_report",
+      "publication_date": "2024-04-13",
+      "page_count": null,
+      "acquisition": "local",
+      "content_path": "G:\\项目\\fintrace-agent\\data\\raw\\002232\\01_改错前_2023年年度报告.pdf",
+      "content_hash": "a9f276a963e3233aad87ef3eec860af96e99c0819f6ceebcde39df72468ea0d1",
+      "available_before_cutoff": null,
+      "material_format": "pdf",
+      "first_published_at": "2024-04-13",
+      "retrieved_at": "",
+      "snapshot_hash": "",
+      "version": "",
+      "superseded_by": ""
+    },
+    {
+      "doc_id": "D-02",
+      "source_id": "qiming_2023_correction_announcement",
+      "file_name": "02_官方更正公告.pdf",
+      "source_type": "correction_announcement",
+      "publication_date": "2024-04-23",
+      "page_count": null,
+      "acquisition": "local",
+      "content_path": "G:\\项目\\fintrace-agent\\data\\raw\\002232\\02_官方更正公告.pdf",
+      "content_hash": "e688e3cf5837535d465f41d11c43f356ab91121873a38dac3f2b5d8cdb453fe1",
+      "available_before_cutoff": null,
+      "material_format": "pdf",
+      "first_published_at": "2024-04-23",
+      "retrieved_at": "",
+      "snapshot_hash": "",
+      "version": "",
+      "superseded_by": ""
+    }
+  ],
+  "notes": [
+    "判定由确定性代码完成（模型只定调查路径）；发布由 V 门裁决。"
+  ]
+}

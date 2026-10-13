@@ -1,0 +1,471 @@
+{
+  "run_id": "FT-20261010-db8e7a46",
+  "schema_version": 1,
+  "artifact_fingerprint": "b4c3f01238de1e81",
+  "mode": "agent",
+  "goal": {
+    "task": "audit_draft",
+    "case_id": "QM-DRAFT-2023-001",
+    "company": "启明信息技术股份有限公司",
+    "period": "2023A"
+  },
+  "bounds": {
+    "cutoff_date": "2024-04-22",
+    "max_tool_calls": 24,
+    "token_budget": 40000,
+    "deadline_ts": 0.0,
+    "cancel_requested": false,
+    "allowed_tools": [
+      "t_search_official",
+      "t_search_web",
+      "t_fetch_web",
+      "t_parse",
+      "t_extract",
+      "t_knowledge",
+      "t_compute",
+      "t_review",
+      "t_lookup",
+      "t_recall",
+      "t_spec_extract",
+      "stop"
+    ],
+    "as_of_mode": "historical_replay"
+  },
+  "counting": {
+    "tool_calls": 6,
+    "tokens": 45546,
+    "sig_repeats": 0,
+    "invalid_decisions": 0
+  },
+  "claims": [
+    {
+      "claim_id": "CG15",
+      "claim_text": "公司 2023 年实现营业收入 12.43 亿元，同比下降 19.33%，主要系外部市场开拓未达预期、收入成本同步下降所致",
+      "source_sentence": "公司 2023 年实现营业收入 12.43 亿元，同比下降 19.33%，主要系外部市场开拓未达预期、收入成本同步下降所致",
+      "sentence_id": "S15",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "revenue",
+      "claim_value": "12.43",
+      "claim_unit": "亿元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-7-0"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG16",
+      "claim_text": "归属于上市公司股东的净利润 2,931.56 万元，同比下降 59.93%，降幅显著大于收入降幅",
+      "source_sentence": "归属于上市公司股东的净利润 2,931.56 万元，同比下降 59.93%，降幅显著大于收入降幅",
+      "sentence_id": "S16",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "net_profit_parent",
+      "claim_value": "2,931.56",
+      "claim_unit": "万元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-7-1"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG17",
+      "claim_text": "基本每股收益 0.72 元，盈利承压明显",
+      "source_sentence": "基本每股收益 0.72 元，盈利承压明显",
+      "sentence_id": "S17",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "basic_eps",
+      "claim_value": "0.72",
+      "claim_unit": "元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-7-4"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG18",
+      "claim_text": "费用方面，销售费用本期发生额 2,232.63 万元，同比增长 82.19%，主要系营销人员增加导致薪酬、差旅及展览费上升",
+      "source_sentence": "费用方面，销售费用本期发生额 2,232.63 万元，同比增长 82.19%，主要系营销人员增加导致薪酬、差旅及展览费上升",
+      "sentence_id": "S18",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "selling_expense",
+      "claim_value": "2,232.63",
+      "claim_unit": "万元",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG19",
+      "claim_text": "研发费用 5,580.05 万元，同比下降 35.26%，主要系部分研发项目进入资本化阶段",
+      "source_sentence": "研发费用 5,580.05 万元，同比下降 35.26%，主要系部分研发项目进入资本化阶段",
+      "sentence_id": "S19",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "rd_expense",
+      "claim_value": "5,580.05",
+      "claim_unit": "万元",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG21",
+      "claim_text": "截至 2023 年 12 月 31 日，公司总资产 21.77 亿元，同比下降 2.17%",
+      "source_sentence": "截至 2023 年 12 月 31 日，公司总资产 21.77 亿元，同比下降 2.17%",
+      "sentence_id": "S21",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "total_assets",
+      "claim_value": "21.77",
+      "claim_unit": "亿元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-8-6"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG22",
+      "claim_text": "归属于上市公司股东的净资产 1,385,610.54 万元，同比增长 0.23%",
+      "source_sentence": "归属于上市公司股东的净资产 1,385,610.54 万元，同比增长 0.23%",
+      "sentence_id": "S22",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "net_assets_parent",
+      "claim_value": "1,385,610.54",
+      "claim_unit": "万元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-8-7"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG23",
+      "claim_text": "现金流是本期最大亮点：经营活动产生的现金流量净额 2.87 亿元，同比增长 474.79%，主要系公司加大应收账款催收力度、销售商品提供劳务收到的现金增加",
+      "source_sentence": "现金流是本期最大亮点：经营活动产生的现金流量净额 2.87 亿元，同比增长 474.79%，主要系公司加大应收账款催收力度、销售商品提供劳务收到的现金增加",
+      "sentence_id": "S23",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "operating_cash_flow",
+      "claim_value": "2.87",
+      "claim_unit": "亿元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-7-3"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG25",
+      "claim_text": "公司 2023 年度利润分配预案为：以总股本 408,548,455 股为基数，向全体股东每 10 股派发现金红利 0.10 元（含税）",
+      "source_sentence": "公司 2023 年度利润分配预案为：以总股本 408,548,455 股为基数，向全体股东每 10 股派发现金红利 0.10 元（含税）",
+      "sentence_id": "S25",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "dividend_per_ten",
+      "claim_value": "0.10",
+      "claim_unit": "元",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG26",
+      "claim_text": "据此，本次现金分红金额为 408,548.46 元，期末可分配利润 24,398,126.94 元",
+      "source_sentence": "据此，本次现金分红金额为 408,548.46 元，期末可分配利润 24,398,126.94 元",
+      "sentence_id": "S26",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "cash_dividend",
+      "claim_value": "408,548.46",
+      "claim_unit": "元",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG26",
+      "claim_text": "据此，本次现金分红金额为 408,548.46 元，期末可分配利润 24,398,126.94 元",
+      "source_sentence": "据此，本次现金分红金额为 408,548.46 元，期末可分配利润 24,398,126.94 元",
+      "sentence_id": "S26",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "distributable_profit",
+      "claim_value": "24,398,126.94",
+      "claim_unit": "元",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG27",
+      "claim_text": "根据年报第 88 页披露，公司 2023 年基本每股收益为 0.0718 元",
+      "source_sentence": "根据年报第 88 页披露，公司 2023 年基本每股收益为 0.0718 元",
+      "sentence_id": "S27",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "basic_eps",
+      "claim_value": "0.0718",
+      "claim_unit": "元",
+      "status": "verified",
+      "open_questions": [],
+      "evidence_ids": [
+        "FT-20261010-db8e7a46-D-01-7-4"
+      ],
+      "finding_id": "",
+      "blocked_reason": null
+    },
+    {
+      "claim_id": "CG28",
+      "claim_text": "按归母净利润口径，公司加权平均净资产收益率为 1.66%",
+      "source_sentence": "按归母净利润口径，公司加权平均净资产收益率为 1.66%",
+      "sentence_id": "S28",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "weighted_roe",
+      "claim_value": "1.66",
+      "claim_unit": "%",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG30",
+      "claim_text": "公司 2023 年综合毛利率为 32.5%，较上年有所下滑，需关注后续订单恢复节奏",
+      "source_sentence": "公司 2023 年综合毛利率为 32.5%，较上年有所下滑，需关注后续订单恢复节奏",
+      "sentence_id": "S30",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "gross_margin",
+      "claim_value": "32.5",
+      "claim_unit": "%",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    },
+    {
+      "claim_id": "CG31",
+      "claim_text": "以 2024 年 4 月 12 日收盘价计算，公司对应 2023 年归母净利润的市盈率约为 41 倍",
+      "source_sentence": "以 2024 年 4 月 12 日收盘价计算，公司对应 2023 年归母净利润的市盈率约为 41 倍",
+      "sentence_id": "S31",
+      "subject": "启明信息技术股份有限公司",
+      "period": "2023A",
+      "metric_key": "pe_ratio",
+      "claim_value": "41",
+      "claim_unit": "倍",
+      "status": "insufficient",
+      "open_questions": [],
+      "evidence_ids": [],
+      "finding_id": "",
+      "blocked_reason": "材料中未找到同指标的已核验断言（期间 2023；该期间库里已有：基本每股收益、归属于上市公司股东的净利润、归属于上市公司股东的净资产、总资产、扣除非经常性损益后的归属于上市公司股东的净利润、经营活动产生的现金流量净额、营业收入）"
+    }
+  ],
+  "steps": [
+    {
+      "n": 1,
+      "action": "t_parse",
+      "args": {
+        "doc_id": "D-01",
+        "path": "G:\\项目\\fintrace-agent\\data\\raw\\002232\\01_改错前_2023年年度报告.pdf",
+        "pages": "1-10"
+      },
+      "args_sig": "{\"doc_id\":\"D-01\",\"pages\":\"1-10\",\"path\":\"G:\\\\项目\\\\fintrace-agent\\\\data\\\\raw\\\\002232\\\\01_改错前_2023年年度报告.pdf\"}",
+      "sig": "t_parse|{\"doc_id\":\"D-01\",\"pages\":\"1-10\",\"path\":\"G:\\\\项目\\\\fintrace-agent\\\\data\\\\raw\\\\002232\\\\01_改错前_2023年年度报告.pdf\"}",
+      "ok": true,
+      "error": "",
+      "message": "",
+      "result_keys": [
+        "count",
+        "extractor",
+        "format",
+        "probe",
+        "spans"
+      ],
+      "progress": "new_evidence",
+      "new_evidence": 15,
+      "at": "2026-10-10T11:05:25"
+    },
+    {
+      "n": 2,
+      "action": "t_extract",
+      "args": {
+        "doc_id": "D-01",
+        "pages": "7-8",
+        "source": "span",
+        "allow_llm": false
+      },
+      "args_sig": "{\"allow_llm\":false,\"doc_id\":\"D-01\",\"pages\":\"7-8\",\"source\":\"span\"}",
+      "sig": "t_extract|{\"allow_llm\":false,\"doc_id\":\"D-01\",\"pages\":\"7-8\",\"source\":\"span\"}",
+      "ok": true,
+      "error": "",
+      "message": "已登记 7 条已核验断言（W 门通过）；被拒 0 条。",
+      "result_keys": [
+        "claims",
+        "count",
+        "doc_id",
+        "extracted_by",
+        "message"
+      ],
+      "progress": "new_evidence",
+      "new_evidence": 7,
+      "at": "2026-10-10T11:05:28"
+    },
+    {
+      "n": 3,
+      "action": "t_compute",
+      "args": {
+        "metric_id": "归属于上市公司股东的净利润_同比增减",
+        "op": "yoy_change",
+        "caliber": "合并报表_上年同期数采用调整后口径",
+        "formula": "(current - prior) / prior",
+        "inputs": {
+          "current": 29315603.26,
+          "prior_adjusted": 73164746.2
+        }
+      },
+      "args_sig": "{\"caliber\":\"合并报表_上年同期数采用调整后口径\",\"formula\":\"(current - prior) / prior\",\"inputs\":{\"current\":29315603.26,\"prior_adjusted\":73164746.2},\"metric_id\":\"归属于上市公司股东的净利润_同比增减\",\"op\":\"yoy_change\"}",
+      "sig": "t_compute|{\"caliber\":\"合并报表_上年同期数采用调整后口径\",\"formula\":\"(current - prior) / prior\",\"inputs\":{\"current\":29315603.26,\"prior_adjusted\":73164746.2},\"metric_id\":\"归属于上市公司股东的净利润_同比增减\",\"op\":\"yoy_change\"}",
+      "ok": false,
+      "error": "bad_args",
+      "message": "缺少 formula / op / metric_id，无法确定算式",
+      "result_keys": [
+        "message"
+      ],
+      "progress": "none",
+      "new_evidence": 0,
+      "at": "2026-10-10T11:05:52"
+    },
+    {
+      "n": 4,
+      "action": "t_compute",
+      "args": {
+        "metric_id": "归属于上市公司股东的净利润_同比增减",
+        "op": "yoy_change",
+        "caliber": "合并报表_上年同期数采用调整后口径",
+        "formula": "(current - prior) / prior",
+        "inputs": {
+          "current": 29315603.26,
+          "prior": 73164746.2
+        }
+      },
+      "args_sig": "{\"caliber\":\"合并报表_上年同期数采用调整后口径\",\"formula\":\"(current - prior) / prior\",\"inputs\":{\"current\":29315603.26,\"prior\":73164746.2},\"metric_id\":\"归属于上市公司股东的净利润_同比增减\",\"op\":\"yoy_change\"}",
+      "sig": "t_compute|{\"caliber\":\"合并报表_上年同期数采用调整后口径\",\"formula\":\"(current - prior) / prior\",\"inputs\":{\"current\":29315603.26,\"prior\":73164746.2},\"metric_id\":\"归属于上市公司股东的净利润_同比增减\",\"op\":\"yoy_change\"}",
+      "ok": false,
+      "error": "bad_args",
+      "message": "缺少 formula / op / metric_id，无法确定算式",
+      "result_keys": [
+        "message"
+      ],
+      "progress": "none",
+      "new_evidence": 0,
+      "at": "2026-10-10T11:06:02"
+    },
+    {
+      "n": 5,
+      "action": "t_knowledge",
+      "args": {
+        "op": "get_rule",
+        "metric_id": "归属于上市公司股东的净利润",
+        "period": "2023A",
+        "anchor": "yoy_change"
+      },
+      "args_sig": "{\"anchor\":\"yoy_change\",\"metric_id\":\"归属于上市公司股东的净利润\",\"op\":\"get_rule\",\"period\":\"2023A\"}",
+      "sig": "t_knowledge|{\"anchor\":\"yoy_change\",\"metric_id\":\"归属于上市公司股东的净利润\",\"op\":\"get_rule\",\"period\":\"2023A\"}",
+      "ok": false,
+      "error": "bad_args",
+      "message": "未知 op：'get_rule'（可选 ['resolve_metric', 'formula', 'relation_rule', 'context_check', 'precision_for', 'all_metrics']）",
+      "result_keys": [
+        "message"
+      ],
+      "progress": "none",
+      "new_evidence": 0,
+      "at": "2026-10-10T11:06:21"
+    },
+    {
+      "n": 6,
+      "action": "t_knowledge",
+      "args": {
+        "op": "all_metrics"
+      },
+      "args_sig": "{\"op\":\"all_metrics\"}",
+      "sig": "t_knowledge|{\"op\":\"all_metrics\"}",
+      "ok": true,
+      "error": "",
+      "message": "",
+      "result_keys": [
+        "hit",
+        "op",
+        "value"
+      ],
+      "progress": "none",
+      "new_evidence": 0,
+      "at": "2026-10-10T11:06:50"
+    }
+  ],
+  "hypotheses": [],
+  "evidence_index": [
+    "S-000000",
+    "S-000001",
+    "S-000002",
+    "S-000003",
+    "S-000004",
+    "S-000005",
+    "S-000006",
+    "S-000007",
+    "S-000008",
+    "S-000009",
+    "S-000010",
+    "S-000011",
+    "S-000012",
+    "S-000013",
+    "S-000014",
+    "FT-20261010-db8e7a46-D-01-7-0",
+    "FT-20261010-db8e7a46-D-01-7-1",
+    "FT-20261010-db8e7a46-D-01-7-2",
+    "FT-20261010-db8e7a46-D-01-7-3",
+    "FT-20261010-db8e7a46-D-01-7-4",
+    "FT-20261010-db8e7a46-D-01-8-6",
+    "FT-20261010-db8e7a46-D-01-8-7"
+  ],
+  "rejected_index": [],
+  "stop": {
+    "requested_by_model": false,
+    "reason": null
+  },
+  "as_of": "2024-04-22",
+  "unresolved": [],
+  "tool_results": []
+}

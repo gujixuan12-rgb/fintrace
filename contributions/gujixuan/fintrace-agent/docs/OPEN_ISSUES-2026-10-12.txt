@@ -1,0 +1,43 @@
+fintrace-agent 本次读数发现的问题
+2026-10-12  数据源：直接读 knowledge/knowledge.sqlite 与 data/facts.sqlite，不是看代码推断
+
+一、库列存的是原文写法，没有落归一后的值
+    证据 1（指标）：metric 列存中文长名。同一概念的两种写法各 1 行——
+      「归属于上市公司股东的扣除非经常性损益的净利润」（run a38c3a01）
+      「归属于上市公司股东的扣除非经常性损益后的净利润」（run db8e7a46）
+    证据 2（期间）：period 列保留原文，同一 run 内就混写——
+      「2021年（调整后）」2 行 与「2021年调整后」1 行并存；「2022年（调整后）」与「2022年调整后」同样并存
+      另有 2023A / 2023年 / 2023年末 / 2022年调整前 / 2023年较2022年（调整后）等共 10 种
+    影响：query(subject/period/metric) 是精确匹配，拿归一后的名字去点查会一条都不命中。
+      归一发生在判定层（STATUS.md 第 9 轮「期间归一后匹配」），库里没有归一列。
+    待定：是否给 assertions 加 metric_id / period_normalized 两列落库，供点查与跨 run 统计。
+
+二、跨 run 没去重，事实上会累积重复行
+    证据：启明 2023 的同类断言存了两份
+      FT-20261010-a38c3a01  17 行（attested+bound 7 / attested+unbound 10）
+      FT-20261010-db8e7a46   7 行（全部 attested+bound）
+      如「营业收入 2023年」与「营业收入 2023A」各 1 行，两条 id 不同
+    影响：facts/store.py 的幂等只到 assertion_id 粒度（id 带 run 前缀），跨 run 不去重；
+      事实库随 run 数增长，stats() 的 facts 计数会把同一件事数两遍。
+      v2.2 §3 要求事实库跨轮累积，缺一条「同 (subject, period, metric) 取哪一条」的读法。
+    待定：定合并策略——按三元组取最新 run，或优先取 bound，或两条都留但在查询层折叠。
+
+三、data/facts.sqlite 的 relations 表是空的
+    证据：COUNT(*) = 0；索引 idx_relations_subject/object/rule 已建好。
+    影响：Relation 是 v2.2 §2.4 的核心模型（带适用条件三元组），事实层还没有任何一行；
+      目前关系只以知识库那 9 条规则的形式存在。
+    待定：先判断是「还没跑到需要关系的场景」还是「回路没写进去」。
+
+四、knowledge.sqlite 的 provenance 表是空的
+    证据：COUNT(*) = 0（人审入册 ratify 从未发生过）。
+    影响：知识版本留痕链路没有实际数据；与 STATUS.md 不足 6（重建即覆盖）是同一处待办。
+    待定：等第一条知识变更走完人审再观察。
+
+五、事实库目前只有启明信息一个主体
+    证据：subject 只有「启明信息技术股份有限公司」，24 行全部 kind=financial_value；
+      其中 attested+bound 14 行（可当事实查出来），attested+unbound 10 行（留痕但不作事实）。
+    影响：天下秀在 runs/data 里有材料但没有断言入库；两轴的过滤效果目前只在这一个案件上可见。
+
+附：核查用的两个一次性脚本（不属项目，可删）
+  G:/tools/fintrace-tools/_build/dump_tables.py
+  G:/tools/fintrace-tools/_build/stat_tables.py

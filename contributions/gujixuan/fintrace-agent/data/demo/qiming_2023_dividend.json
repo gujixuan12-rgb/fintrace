@@ -1,0 +1,28 @@
+{
+  "case_id": "qiming_2023_dividend_manual_excerpt",
+  "company": "启明信息技术股份有限公司",
+  "stock_code": "002232",
+  "prediction_cutoff_date": "2024-04-22",
+  "input_mode": "人工核对的原始年报两页摘录；尚非自动PDF解析",
+  "pre_cutoff_source": {
+    "source_type": "original_annual_report",
+    "file_name": "启明信息技术股份有限公司2023年年度报告全文（更正前）",
+    "publication_date": "2024-04-13",
+    "available_before_cutoff": true,
+    "hosted_copy_url": "https://stockn.xueqiu.com/SZ002232/20240412601000.pdf",
+    "host_note": "所核对PDF为更正前版本的公开转载副本；正式披露入口仍待齐飞扬补齐"
+  },
+  "observations": {
+    "shares": {"value": "408548455", "unit": "股", "printed_page": 51, "description": "分配预案的股本基数"},
+    "dividend_per_ten_shares": {"value": "0.10", "unit": "元/10股", "printed_page": 51, "description": "每10股派息数"},
+    "disclosed_dividend": {"value": "408548.46", "unit": "元", "printed_page": 51, "description": "现金分红金额"},
+    "other_page_total": {"value": "408.55", "unit": "万元", "printed_page": 223, "description": "利润分配总额"}
+  },
+  "post_cutoff_validation": {
+    "source_type": "correction_announcement",
+    "publication_date": "2024-04-23",
+    "allowed_for_detection": false,
+    "url": "https://static.cninfo.com.cn/finalpage/2024-04-23/1219734416.PDF",
+    "corrected_dividend_yuan": "4085484.55"
+  }
+}

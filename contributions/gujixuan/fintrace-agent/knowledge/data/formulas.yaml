@@ -1,0 +1,20 @@
+"generator": "fintrace_agent.knowledge.extract_from_engine"
+"kind": "formulas"
+"records":
+  - "applicable_when":
+      "metric_id": "cash_dividend"
+      "output_unit": "元"
+    "caliber": ""
+    "expression": "股本 × 每 10 股派息数 ÷ 10"
+    "formula_id": "expected_dividend_yuan"
+    "inputs":
+      - "total_shares"
+      - "dividend_per_ten"
+    "metric_id": "cash_dividend"
+    "rounding":
+      "mode": "ROUND_HALF_UP"
+      "scale": 2
+    "rule_version": "1"
+    "status": "authoritative"
+"rule_version": "1"
+"schema_version": 1

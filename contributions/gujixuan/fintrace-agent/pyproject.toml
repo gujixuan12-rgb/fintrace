@@ -1,0 +1,27 @@
+[project]
+name = "fintrace-agent"
+version = "0.1.0"
+description = "FinTrace 独立版：受约束的核查 Agent（自主路径 + 硬边界 + W/V 双门 + 四层证据模型）"
+requires-python = ">=3.11"
+dependencies = []                     # 核心链路零第三方依赖，这条是项目不变量
+
+[project.optional-dependencies]
+pdf = ["pymupdf>=1.24"]               # 只有读真实 PDF 时需要
+
+[project.scripts]
+fintrace-agent = "fintrace_agent.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q --tb=short"

@@ -1,0 +1,282 @@
+{
+  "artifact_role": "evaluation_only_do_not_pass_to_detector_or_agent",
+  "warning": "本文件是评测答案。检测流程、提示词、检索索引一律不得读取本文件，否则指标无意义。",
+  "sample_id": "TXX-DRAFT-2023-001",
+  "draft_file": "data/annotations/drafts/tianxiaxiu_2023_research_draft.md",
+  "sample_type": "team_authored_research_draft",
+  "sample_note": "我方构造的测试用研报草稿，非真实券商研报。数字取自天下秀《2023年年度报告》公开披露值，错误由我方主动植入。",
+  "annotation_scope": "partial",
+  "annotation_scope_note": "草稿里还有真值未收录的主张（运行时多拆出的「每 10 股派现」），因此不是 exhaustive：运行时多报的错误裁决只能列为「待审」，不得计入 FP，也不得据此宣称「无误报」。补全金标后再改成 exhaustive。",
+  "sample_purpose": "第二家样本公司。选用依据：该公司2023年年报存在官方承认的披露差错（更正公告2024-04-23发布），且原版与更正版、更正公告均在巨潮可下载，可提供「官方认可的真值」。与启明信息样本（002232）形成对照：启明考察跨页勾稽，本样本考察单位/量级与表头口径。",
+  "source": {
+    "source_id": "tianxiaxiu_2023_annual_report_original",
+    "title": "天下秀数字科技（集团）股份有限公司2023年年度报告",
+    "stock_code": "600556",
+    "source_publication_date": "2024-04-22",
+    "pdf_page_count": 269,
+    "source_sha256": "734c2a883f946f8ae53c02a7e4475cf19f7babd85a42a7d564ff59f7e516a607",
+    "local_path_hint": "data/raw/600556/01_改错前_2023年年度报告.pdf"
+  },
+  "correction_reference": {
+    "source_id": "tianxiaxiu_2023_correction_announcement",
+    "title": "关于《2023年年度报告》及《2023年年度报告摘要》的更正公告",
+    "publication_date": "2024-04-23",
+    "source_sha256": "7e699098e6bbd93e66b72dcf3c125792b8513bf415fd35b16ae52b7f32f80880",
+    "corrected_annual_report": {
+      "title": "天下秀数字科技（集团）股份有限公司2023年年度报告（更正版）",
+      "publication_date": "2024-04-23",
+      "source_sha256": "023ace0c365989a898b894f22f8fb43e4604761658fa65a2b39a688b74cb20d0",
+      "local_path_hint": "data/raw/600556/03_改错后_2023年年度报告.pdf"
+    },
+    "note": "逐页文本比对（原版 vs 更正版，同为269页）确认更正6处：①第22页「扣除非经常性损益后归属于公司普通股股东的净利润0.74万元」→「0.74亿元」；②第87页募集资金整体使用情况表 单位「元」→「万元」；③第88页募投项目明细表 单位「元」→「万元」；④第231页重要的非全资子公司表表头「少数股东持股比例」→补「（%）」；⑤第248页募集资金投向使用情况表表头「承诺投资金额／实际投资金额」→补「（万元）」；⑥第254页利润分配方案「024年4月22日」→「2024年4月22日」、「第十一届董事会第七次会议」→「第八次会议」。其中①为金额量级错，②③④⑤为表格单位／表头口径缺失，⑥为文字笔误与会议届次错。本样本植入的 TXX-007 正对应①处；②～⑥未植入主张，保留作为后续扩样素材。",
+    "verification_method": "python + pymupdf 对两版 PDF 逐页取文本、去空白后比对，差异页为 22 / 87 / 88 / 231 / 248 / 254。"
+  },
+  "prediction_cutoff_date": "2024-04-22",
+  "cutoff_rationale": "原版年报于2024-04-22披露；更正公告与更正版年报均为2024-04-23发布，落在截止日之后。设定截止日2024-04-22，使两者都被时间截断排除，判定不得引用更正公告或更正后年报作为依据。",
+  "quote_format": "PDF抽取文本按行拆散、数字被换行截断，quote字段为去空白拼接后的可读形式。",
+  "summary": {
+    "total_claims": 13,
+    "expected_supported": 6,
+    "expected_contradicted": 6,
+    "expected_insufficient": 1,
+    "error_type_counts": {
+      "numeric_scale": 1,
+      "unit": 1,
+      "cross_reference": 1,
+      "citation_page": 1,
+      "caliber": 1,
+      "numeric_mismatch": 1,
+      "insufficient_evidence": 1
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "TXX-001",
+      "section": "一、经营业绩",
+      "claim_text": "公司2023年实现营业收入42.02亿元，同比增长1.77%",
+      "metric": "revenue",
+      "value": "4202030347.42",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "误报控制负例：草稿用「亿元」而原文第8页以「元」披露（4,202,030,347.42元），第22页以「42.02亿元」复述，属正常换算，不得因单位写法不同或四舍五入而判为错误。",
+      "basis": "年报第8页主要会计数据表披露2023年营业收入4,202,030,347.42元、本期比上年同期增减1.77%；第22页「报告期内主要经营情况」再次表述为「实现营业收入人民币42.02亿元，同比提高1.77%」，两处互证。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "营业收入 4,202,030,347.42 4,128,909,281.45 1.77"},
+        {"pdf_page": 22, "printed_page": 22, "quote": "公司实现营业收入人民币42.02 亿元，同比提高1.77%"}
+      ]
+    },
+    {
+      "claim_id": "TXX-002",
+      "section": "一、经营业绩",
+      "claim_text": "归属于上市公司股东的净利润0.93亿元，同比下降48.43%",
+      "metric": "net_profit_attributable_to_parent",
+      "value": "92778970.17",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "basis": "年报第8页披露2023年归属于上市公司股东的净利润92,778,970.17元、本期比上年同期增减-48.43%；第22页表述为「归属于上市公司股东的净利润人民币为0.93亿元，同比下降48.43%」，两处互证。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "归属于上市公司股东的净利润 92,778,970.17 179,922,184.53 -48.43"},
+        {"pdf_page": 22, "printed_page": 22, "quote": "实现归属于上市公司股东的净利润人民币为0.93 亿元，同比下降48.43%"}
+      ]
+    },
+    {
+      "claim_id": "TXX-003",
+      "section": "二、资产与现金流",
+      "claim_text": "经营活动产生的现金流量净额2.99亿元，同比增长52.57%",
+      "metric": "operating_cash_flow_net",
+      "value": "298690366.84",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "误报控制负例：第12页董事长致辞以约数表述「经营活动产生的现金流量净额达到3亿元，同比增加1亿元」，与第8页、第22页的298,690,366.84元、52.57%为同一事实的概数说法（精确值约2.99亿元），不得因约数与精确值不一致而判为错误。",
+      "basis": "年报第8页披露经营活动产生的现金流量净额298,690,366.84元、增减52.57%；第22页科目变动分析表同值同幅，两处互证。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "经营活动产生的现金流量净额 298,690,366.84 195,772,114.49 52.57"},
+        {"pdf_page": 12, "printed_page": 12, "quote": "经营活动产生的现金流量净额达到3 亿元，同比增加1 亿元"}
+      ]
+    },
+    {
+      "claim_id": "TXX-004",
+      "section": "一、经营业绩",
+      "claim_text": "销售费用本期发生额25,097.45万元，同比下降21.09%",
+      "metric": "selling_expense",
+      "value": "250974538.92",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "误报控制负例：费用下降与归母净利润下降方向一致，数值250,974,538.92元换算为25,097.45万元，属正常单位换算。",
+      "basis": "年报第22页利润表及现金流量表相关科目变动分析表披露销售费用本期数250,974,538.92元、上年同期318,050,773.62元、变动比例-21.09%。",
+      "evidence": [
+        {"pdf_page": 22, "printed_page": 22, "quote": "销售费用 250,974,538.92 318,050,773.62 -21.09"}
+      ]
+    },
+    {
+      "claim_id": "TXX-005",
+      "section": "一、经营业绩",
+      "claim_text": "研发费用本期发生额10,565.00万元，同比下降36.25%",
+      "metric": "rd_expense",
+      "value": "105650035.44",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "false_positive_note": "误报控制负例：研发费用下降36.25%而同页营业收入增长1.77%，方向相反，不得因「业绩下滑」这一整体印象推定费用降幅有误。",
+      "basis": "年报第22页科目变动分析表披露研发费用本期数105,650,035.44元、上年同期165,723,570.73元、变动比例-36.25%。",
+      "evidence": [
+        {"pdf_page": 22, "printed_page": 22, "quote": "研发费用 105,650,035.44 165,723,570.73 -36.25"}
+      ]
+    },
+    {
+      "claim_id": "TXX-006",
+      "section": "二、资产与现金流",
+      "claim_text": "公司总资产58.95亿元，同比增长3.36%",
+      "metric": "total_assets",
+      "value": "5895388614.26",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "SUPPORTED",
+      "expected_flag_as_error": false,
+      "error_type": null,
+      "basis": "年报第8页披露2023年末总资产5,895,388,614.26元、本期末比上年同期末增减3.36%，与草稿一致（约58.95亿元）。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "总资产 5,895,388,614.26 5,703,826,578.99 3.36"}
+      ]
+    },
+    {
+      "claim_id": "TXX-007",
+      "section": "一、经营业绩",
+      "claim_text": "扣除非经常性损益后归属于公司普通股股东的净利润0.74万元，同比下降28.96%",
+      "metric": "net_profit_deducted_nonrecurring",
+      "value": "7400",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "numeric_scale",
+      "is_official_error": true,
+      "basis": "量级错误。草稿写「0.74万元」即7,400元，而年报第8页主要会计数据表披露2023年归属于上市公司股东的扣除非经常性损益的净利润73,672,369.59元（即0.74亿元、7,367.24万元），两者相差约1万倍。同比降幅-28.96%与第8页一致，说明错在单位与量级而非趋势。旁证：第268页「净资产收益率及每股收益」表的利润口径与该值同源。注意：原年报第22页本身即写「0.74万元」，草稿系照抄原文错误表述；官方更正公告（2024-04-23）将此处改为「0.74亿元」，但按截止日2024-04-22，更正公告与更正版年报均不可作为判定依据，判定须建立在第8页主要会计数据互证与量级复算之上。",
+      "suggested_fix": "应为0.74亿元（或写7,367.24万元／73,672,369.59元）。该表述有照抄原始披露差错之嫌，建议核对后改写。",
+      "evidence": [
+        {"pdf_page": 22, "printed_page": 22, "quote": "扣除非经常性损益后归属于公司普通股股东的净利润0.74 万元，同比下降28.96%"},
+        {"pdf_page": 8, "printed_page": 8, "quote": "归属于上市公司股东的扣除非经常性损益的净利润 73,672,369.59 103,705,635.69 -28.96"}
+      ]
+    },
+    {
+      "claim_id": "TXX-008",
+      "section": "二、资产与现金流",
+      "claim_text": "归属于上市公司股东的净资产3,833,812,826.72万元，同比增长1.83%",
+      "metric": "net_assets_attributable_to_parent",
+      "value": "3833812826.72",
+      "unit": "万元",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "unit",
+      "basis": "单位与数值不匹配。年报第8页以「元」为单位披露2023年末归属于上市公司股东的净资产3,833,812,826.72元，即383,381.28万元（约38.34亿元）。草稿标注单位为万元却照抄了以元为单位的数字，虚增10,000倍。同比1.83%与披露一致，错误仅在单位与数值的对应关系。",
+      "suggested_fix": "应写为3,833,812,826.72元，或383,381.28万元（约38.34亿元）。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "归属于上市公司股东的净资产 3,833,812,826.72 3,764,907,704.50 1.83"}
+      ]
+    },
+    {
+      "claim_id": "TXX-009",
+      "section": "三、股东回报",
+      "claim_text": "以总股本1,807,747,642股为基数，每10股派发现金红利0.155元（含税）。据此，本次现金分红金额为2,802,008.85元",
+      "metric": "cash_dividend_amount",
+      "value": "2802008.85",
+      "unit": "元",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "cross_reference",
+      "basis": "按草稿自述的预案复算：1,807,747,642股÷10×0.155元=28,020,088.45元。草稿金额2,802,008.85元与复算值差10倍。年报第254页披露「拟分配的利润或股利28,020,088.45元」「拟分配每10股派息数(元)0.155」「公司总股本1,807,747,642股」，与复算值一致，进一步否证2,802,008.85元。",
+      "suggested_fix": "现金分红金额应为28,020,088.45元（约2,802.01万元）。",
+      "evidence": [
+        {"pdf_page": 254, "printed_page": 254, "quote": "拟分配的利润或股利 28,020,088.45；拟分配每10 股派息数(元) 0.155；公司总股本1,807,747,642 股；合计拟派发现金红利28,020,088.45 元"}
+      ]
+    },
+    {
+      "claim_id": "TXX-010",
+      "section": "三、股东回报",
+      "claim_text": "根据年报第22页披露，公司2023年基本每股收益为0.05元/股",
+      "metric": "basic_eps_with_citation",
+      "value": "0.05",
+      "unit": "元/股",
+      "period": "2023A",
+      "cited_page": 22,
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "citation_page",
+      "basis": "数值0.05元/股正确，但引用页码错误：基本每股收益出自年报第8页「主要会计数据和财务指标」表，以及第268页「净资产收益率及每股收益」表。第22页为「报告期内主要经营情况」及利润表相关科目变动分析表，该页未给出每股收益。",
+      "suggested_fix": "引用页码应为第8页（或第268页）。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "基本每股收益（元／股） 0.05 0.10 -50.00"},
+        {"pdf_page": 268, "printed_page": 268, "quote": "归属于公司普通股股东的净 2.44 0.05 0.05"}
+      ]
+    },
+    {
+      "claim_id": "TXX-011",
+      "section": "三、股东回报",
+      "claim_text": "按归母净利润口径，公司2023年加权平均净资产收益率为1.94%",
+      "metric": "weighted_avg_roe",
+      "value": "1.94%",
+      "unit": "%",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "caliber",
+      "basis": "口径混用。年报第8页「主要财务指标」表：归属于公司普通股股东的净利润对应加权平均净资产收益率2.44%（上年4.87%）；1.94%（上年2.81%）是「扣除非经常性损益后的加权平均净资产收益率」。第268页净资产收益率及每股收益表两行口径与之呼应。草稿把扣非口径的数值安到归母口径上。",
+      "suggested_fix": "按归母净利润口径应为2.44%；若确要引用1.94%，须注明为「扣除非经常性损益后」口径。",
+      "evidence": [
+        {"pdf_page": 8, "printed_page": 8, "quote": "加权平均净资产收益率（%） 2.44 4.87 减少2.43 个百分点；扣除非经常性损益后的加权平均净资产收益率（%） 1.94 2.81 减少0.87 个百分点"},
+        {"pdf_page": 268, "printed_page": 268, "quote": "归属于公司普通股股东的净 2.44 0.05 0.05"}
+      ]
+    },
+    {
+      "claim_id": "TXX-012",
+      "section": "四、风险提示",
+      "claim_text": "公司2023年红人营销行业毛利率为21.75%，较上年减少3.73个百分点",
+      "metric": "gross_margin",
+      "value": "21.75%",
+      "unit": "%",
+      "period": "2023A",
+      "expected_verdict": "CONTRADICTED",
+      "expected_flag_as_error": true,
+      "error_type": "numeric_mismatch",
+      "basis": "水平值错误。年报第23页主营业务分行业情况表披露：红人营销行业营业收入4,202,030,347.42元、营业成本3,444,762,163.24元、毛利率18.02%，毛利率比上年减少3.73个百分点。按披露的收入与成本复算：1−3,444,762,163.24÷4,202,030,347.42≈18.02%，与披露值一致，否证21.75%。方向表述「减少3.73个百分点」与披露一致，故本条错误仅在水平值。",
+      "suggested_fix": "应为18.02%。若为自行测算，须注明测算口径、公式与所引页码。",
+      "evidence": [
+        {"pdf_page": 23, "printed_page": 23, "quote": "红人营销行业 4,202,030,347.42 3,444,762,163.24 18.02 1.77 6.62 减少3.73 个百分点"}
+      ]
+    },
+    {
+      "claim_id": "TXX-013",
+      "section": "四、风险提示",
+      "claim_text": "以2024年4月19日收盘价计算，公司对应2023年归母净利润的市盈率约为55倍",
+      "metric": "pe_ratio",
+      "value": "55",
+      "unit": "倍",
+      "period": "2023A",
+      "expected_verdict": "INSUFFICIENT",
+      "expected_flag_as_error": false,
+      "error_type": "insufficient_evidence",
+      "basis": "估值倍数被列为核查项，但计算该值需要2024-04-19的收盘价（或对应复权价）与一致的股本／净利润口径，材料集只含年度报告与更正公告，年报本身不披露股价、市值或市盈率，材料内不存在可用的价格来源。故在给定材料下无法核验，应判「证据不足」并要求补充价格来源，不得因无法复核而径直判为错误。",
+      "missing_input": "2024-04-19收盘价（或对应复权价）及其数据来源；以及市盈率所用的股本／净利润口径说明（是否采用扣非口径）。",
+      "suggested_fix": "请补充收盘价来源与计算口径，或删除该估值倍数表述。若已使用材料外数据，须在草稿中标注数据来源与取数时间。",
+      "evidence": [],
+      "evidence_note": "本条无正面证据：材料集内不存在股价类来源文件。核查系统应输出「证据不足」及缺失输入说明，而非伪造页码。"
+    }
+  ],
+  "interpretation_limit": "本样本共13条主张，规模仅够做案例级验证，不足以支撑泛化准确率结论。任何基于本样本的指标须标注为「案例级」。两个样本（002232、600556）合计26条主张，同样只够案例级对照，不得合并宣称泛化能力。"
+}

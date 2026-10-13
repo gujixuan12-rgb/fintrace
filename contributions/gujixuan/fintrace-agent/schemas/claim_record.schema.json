@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gujixuan12-rgb/fintrace/schemas/claim_record.schema.json",
+  "title": "fintrace 统一数据格式 v1",
+  "description": "第一版统一数据格式。其他成员提交的数据只要符合本 schema，就能按同一格式进入系统。字段口径见 docs/DATA_FORMAT.md。",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "claim_text",
+    "subject",
+    "period",
+    "evidence",
+    "raw_values",
+    "label",
+    "confidence",
+    "run_log_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "description": "本条核查记录的唯一编号"
+    },
+    "claim_text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "研报主张 / 风险信号标题。措辞必须落在 wording_policy.json 的允许集合内。"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "description": "涉及主体：公司全称（可含证券代码）"
+    },
+    "period": {
+      "type": "string",
+      "description": "报告期，如 2020A / 2020Q3 / 2020H1"
+    },
+    "evidence": {
+      "type": "array",
+      "description": "证据文件与页码。每条记录至少一条。",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "file_name", "source_type", "publication_date"],
+        "additionalProperties": false,
+        "properties": {
+          "source_id": { "type": "string" },
+          "file_name": { "type": "string" },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "original_annual_report",
+              "original_interim_report",
+              "inquiry_letter_reply",
+              "audit_report",
+              "research_report",
+              "announcement",
+              "industry_data",
+              "correction_announcement"
+            ]
+          },
+          "publication_date": {
+            "type": "string",
+            "pattern": "^$|^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "发布日期 YYYY-MM-DD。无法确定时留空字符串，会被时间过滤判为不可用。"
+          },
+          "page": {
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "description": "页码，1-based。定位不到必须为 null，禁止编造。"
+          },
+          "quoted_text": { "type": "string" },
+          "available_before_cutoff": {
+            "type": ["boolean", "null"],
+            "description": "由 cutoff_filter 计算回填：publication_date <= prediction_cutoff_date"
+          }
+        }
+      }
+    },
+    "raw_values": {
+      "type": "array",
+      "description": "原始数值和单位 —— 直接抄自材料，未经加工",
+      "items": {
+        "type": "object",
+        "required": ["metric", "value", "unit", "period"],
+        "additionalProperties": false,
+        "properties": {
+          "metric": { "type": "string" },
+          "value": { "type": "number" },
+          "unit": { "type": "string", "description": "元 / 万元 / 亿元 / % / ratio" },
+          "period": { "type": "string" },
+          "evidence": {
+            "oneOf": [{ "type": "null" }, { "type": "object" }]
+          }
+        }
+      }
+    },
+    "recomputation": {
+      "description": "复算结果 —— 必须由 Python 确定性计算得出，不由模型口算",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["formula", "inputs"],
+          "additionalProperties": false,
+          "properties": {
+            "formula": { "type": "string" },
+            "inputs": { "type": "object", "additionalProperties": { "type": "number" } },
+            "result": { "type": ["number", "null"] },
+            "expected": { "type": ["number", "null"] },
+            "unit": { "type": "string" },
+            "matched": { "type": ["boolean", "null"] },
+            "deviation_pct": { "type": ["number", "null"] },
+            "error": {
+              "type": ["string", "null"],
+              "description": "输入缺失或口径不明时写明原因；result 必须同时为 null"
+            }
+          }
+        }
+      ]
+    },
+    "label": {
+      "type": "string",
+      "description": "核查标签。允许集合见 schemas/wording_policy.json。",
+      "enum": [
+        "RISK_SIGNAL_DETECTED",
+        "FURTHER_VERIFICATION_SUGGESTED",
+        "POSSIBLE_RISK_CATEGORY",
+        "INSUFFICIENT_INFORMATION",
+        "CONFIRMED_BY_AUTHORITATIVE_DOCUMENT"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "置信度 0.0-1.0。证据定位失败时必须显著下调。"
+    },
+    "unable_reason": {
+      "type": ["string", "null"],
+      "description": "无法判断原因。label 为 INSUFFICIENT_INFORMATION 时必填。"
+    },
+    "run_log_id": {
+      "type": "string",
+      "pattern": "^FT-\\d{8}-[0-9a-f]{10}$",
+      "description": "完整运行日志编号，可在 out/ 下按此编号找回当次运行的完整输入与中间结果"
+    }
+  }
+}

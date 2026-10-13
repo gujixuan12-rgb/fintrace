@@ -1,0 +1,26 @@
+{
+  "case_id": "QM-DRAFT-2023-001",
+  "company": "启明信息技术股份有限公司",
+  "stock_code": "002232",
+  "period": "2023A",
+  "prediction_cutoff_date": "2024-04-22",
+  "cutoff_rationale": "更正公告2024-04-23发布，落在截止日之后，用于检验防泄漏时间截断。",
+  "draft": "data/annotations/drafts/qiming_2023_research_draft.md",
+  "expected": "data/annotations/evaluation/qiming_2023_research_expected.json",
+  "documents": [
+    {
+      "source_id": "qiming_2023_annual_report_original",
+      "file_name": "01_改错前_2023年年度报告.pdf",
+      "source_type": "original_annual_report",
+      "publication_date": "2024-04-13",
+      "path": "data/raw/002232/01_改错前_2023年年度报告.pdf"
+    },
+    {
+      "source_id": "qiming_2023_correction_announcement",
+      "file_name": "02_官方更正公告.pdf",
+      "source_type": "correction_announcement",
+      "publication_date": "2024-04-23",
+      "path": "data/raw/002232/02_官方更正公告.pdf"
+    }
+  ]
+}

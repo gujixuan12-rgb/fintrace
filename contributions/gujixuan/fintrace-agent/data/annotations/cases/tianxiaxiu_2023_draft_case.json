@@ -1,0 +1,27 @@
+{
+  "case_id": "TXX-DRAFT-2023-001",
+  "company": "天下秀数字科技（集团）股份有限公司",
+  "stock_code": "600556",
+  "period": "2023A",
+  "prediction_cutoff_date": "2024-04-22",
+  "cutoff_rationale": "原版年报于2024-04-22披露；官方更正公告与更正版年报均为2024-04-23发布，落在截止日之后，用于检验防泄漏时间截断：判定不得引用更正公告作为依据。",
+  "draft": "data/annotations/drafts/tianxiaxiu_2023_research_draft.md",
+  "expected": "data/annotations/evaluation/tianxiaxiu_2023_research_expected.json",
+  "notes": "本案例是第二家样本公司，与 QM-DRAFT-2023-001（启明信息 002232）同构，用于做对照实验。第22页「0.74万元」是原年报自身存在的差错，官方更正公告（2024-04-23）才改为「0.74亿元」；按截止日要求，判定不得引用更正公告，须靠第8页主要会计数据互证。同目录的 03_改错后_2023年年度报告.pdf 为事后对照材料，故意不列入 documents，避免进入检测材料集。",
+  "documents": [
+    {
+      "source_id": "tianxiaxiu_2023_annual_report_original",
+      "file_name": "01_改错前_2023年年度报告.pdf",
+      "source_type": "original_annual_report",
+      "publication_date": "2024-04-22",
+      "path": "data/raw/600556/01_改错前_2023年年度报告.pdf"
+    },
+    {
+      "source_id": "tianxiaxiu_2023_correction_announcement",
+      "file_name": "02_官方更正公告.pdf",
+      "source_type": "correction_announcement",
+      "publication_date": "2024-04-23",
+      "path": "data/raw/600556/02_官方更正公告.pdf"
+    }
+  ]
+}

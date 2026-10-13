@@ -1,0 +1,70 @@
+"generator": "fintrace_agent.knowledge.extract_from_engine"
+"kind": "units"
+"records":
+  - "base": "%"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "%"
+  - "base": "元"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 10000.0
+    "unit": "万元"
+  - "base": "股"
+    "precision": 0
+    "rounding": "ROUND_HALF_UP"
+    "scale": 10000.0
+    "unit": "万股"
+  - "base": "个百分点"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "个百分点"
+  - "base": "元"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 100000000.0
+    "unit": "亿元"
+  - "base": "股"
+    "precision": 0
+    "rounding": "ROUND_HALF_UP"
+    "scale": 100000000.0
+    "unit": "亿股"
+  - "base": "倍"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "倍"
+  - "base": "元"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "元"
+  - "base": "元/10股"
+    "precision": 3
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "元/10股"
+  - "base": "元/股"
+    "precision": 4
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "元/股"
+  - "base": "元"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1000.0
+    "unit": "千元"
+  - "base": "元"
+    "precision": 2
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1000000.0
+    "unit": "百万元"
+  - "base": "股"
+    "precision": 0
+    "rounding": "ROUND_HALF_UP"
+    "scale": 1.0
+    "unit": "股"
+"rule_version": "1"
+"schema_version": 1

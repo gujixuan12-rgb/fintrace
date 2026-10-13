@@ -1,0 +1,22 @@
+# 材料与运行产物不进版本库
+data/raw/
+data/uploads/
+data/processed/
+.secrets/
+.env
+runs/
+out/
+blobs/
+snapshots/
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# IDE / 其他
+.idea/
+*.iml
+.DS_Store
